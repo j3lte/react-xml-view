@@ -10,7 +10,7 @@ interface CDataElementProps {
   indentation: string;
 }
 
-export const CDataElement = memo(
+export const CDataElement = memo<(props: CDataElementProps) => JSX.Element>(
   ({ element, indentation }: CDataElementProps) => {
     const { theme, classNames } = useXMLViewerContext();
     const { cdataColor } = useMemo(() => getStyles(theme), [theme]);

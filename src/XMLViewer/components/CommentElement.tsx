@@ -10,7 +10,7 @@ interface CommentElementProps {
   indentation: string;
 }
 
-export const CommentElement = memo(
+export const CommentElement = memo<(props: CommentElementProps) => JSX.Element>(
   ({ element, indentation }: CommentElementProps) => {
     const { theme, classNames } = useXMLViewerContext();
     const { commentColor } = useMemo(() => getStyles(theme), [theme]);

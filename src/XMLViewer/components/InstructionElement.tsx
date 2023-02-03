@@ -10,30 +10,30 @@ interface InstructionElementProps {
   indentation: string;
 }
 
-export const InstructionElement = memo(
-  ({ element, indentation }: InstructionElementProps) => {
-    const { theme, classNames } = useXMLViewerContext();
-    const styles = useMemo(() => getStyles(theme), [theme]);
-    return (
-      <div className={clsx(classNames.instruction)}>
-        <span
-          className={clsx(classNames.separator)}
-          style={styles.separatorColor}
-        >{`${indentation}<?`}</span>
-        <span className={clsx(classNames.tag)} style={styles.tagColor}>
-          {element.name}
-        </span>
-        <span
-          className={clsx(classNames.attributeKey)}
-          style={styles.attributeKeyColor}
-        >{` ${element.content}`}</span>
-        <span
-          className={clsx(classNames.separator)}
-          style={styles.separatorColor}
-        >{`?>`}</span>
-      </div>
-    );
-  }
-);
+export const InstructionElement = memo<
+  (props: InstructionElementProps) => JSX.Element
+>(({ element, indentation }: InstructionElementProps) => {
+  const { theme, classNames } = useXMLViewerContext();
+  const styles = useMemo(() => getStyles(theme), [theme]);
+  return (
+    <div className={clsx(classNames.instruction)}>
+      <span
+        className={clsx(classNames.separator)}
+        style={styles.separatorColor}
+      >{`${indentation}<?`}</span>
+      <span className={clsx(classNames.tag)} style={styles.tagColor}>
+        {element.name}
+      </span>
+      <span
+        className={clsx(classNames.attributeKey)}
+        style={styles.attributeKeyColor}
+      >{` ${element.content}`}</span>
+      <span
+        className={clsx(classNames.separator)}
+        style={styles.separatorColor}
+      >{`?>`}</span>
+    </div>
+  );
+});
 
 InstructionElement.displayName = "InstructionElement";

@@ -37,14 +37,13 @@ const onSelectText: MouseEventHandler<HTMLSpanElement> = (e) => {
   e.stopPropagation();
 };
 
-const Element = ({ element, indentation }: ElementProps) => {
+const Element = memo(({ element, indentation }: ElementProps) => {
   const [collapsed, setCollapsed] = useState(false);
   const { theme, classNames, indentSize, collapsible } = useXMLViewerContext();
   const styles = useMemo(() => getStyles(theme), [theme]);
 
-  const { name, attributes, children: elements } = element;
-
-  const cursor = collapsible && elements ? "pointer" : "text";
+  const hasChildren = element.children && element.children.length > 0;
+  const cursor = collapsible && hasChildren ? "pointer" : "text";
 
   return (
     <div
@@ -67,38 +66,40 @@ const Element = ({ element, indentation }: ElementProps) => {
         style={styles.separatorColor}
       >{`${indentation}<`}</span>
       <span className={clsx(classNames.tag)} style={styles.tagColor}>
-        {name}
+        {element.name}
       </span>
-      {!collapsed && <Attributes attributes={attributes} />}
+      {!collapsed && <Attributes attributes={element.attributes} />}
       <span
         className={clsx(classNames.separator)}
         style={styles.separatorColor}
       >
-        {elements ? ">" : "/>"}
+        {hasChildren ? ">" : "/>"}
       </span>
-      {elements && !collapsed && (
+      {hasChildren && !collapsed && (
         <span
           className={clsx(classNames.elementChildren)}
           onClick={onSelectText}
         >
           <Elements
-            elements={elements}
+            elements={element.children}
             indentation={indentation + getIndentationString(indentSize)}
           />
         </span>
       )}
-      {elements && (
+      {hasChildren && (
         <span
           className={clsx(classNames.separator)}
           style={styles.separatorColor}
-        >{`${isTextElement(elements) || collapsed ? "" : indentation}</`}</span>
+        >{`${
+          isTextElement(element.children) || collapsed ? "" : indentation
+        }</`}</span>
       )}
-      {elements && (
+      {hasChildren && (
         <span className={clsx(classNames.tag)} style={styles.tagColor}>
-          {name}
+          {element.name}
         </span>
       )}
-      {elements && (
+      {hasChildren && (
         <span
           className={clsx(classNames.separator)}
           style={styles.separatorColor}
@@ -108,7 +109,7 @@ const Element = ({ element, indentation }: ElementProps) => {
       )}
     </div>
   );
-};
+});
 
 Element.displayName = "Element";
 
@@ -119,45 +120,46 @@ interface ElementsProps {
   indentation: string;
 }
 
-export const Elements = memo(({ elements, indentation }: ElementsProps) => {
-  return (
-    <>
-      {elements.map((el, index) => {
-        const key = `el-${index}`;
-        if (el instanceof XmlText && el.type === XmlNode.TYPE_TEXT) {
-          return <TextElement key={key} element={el} />;
-        } else if (
-          el instanceof XmlElement &&
-          el.type === XmlNode.TYPE_ELEMENT
-        ) {
-          return <Element key={key} element={el} indentation={indentation} />;
-        } else if (
-          el instanceof XmlComment &&
-          el.type === XmlNode.TYPE_COMMENT
-        ) {
-          return (
-            <CommentElement key={key} element={el} indentation={indentation} />
-          );
-        } else if (el instanceof XmlCdata && el.type === XmlNode.TYPE_CDATA) {
-          return (
-            <CDataElement key={key} element={el} indentation={indentation} />
-          );
-        } else if (
-          el instanceof XmlProcessingInstruction &&
-          el.type === XmlNode.TYPE_PROCESSING_INSTRUCTION
-        ) {
+export const Elements = memo<(props: ElementsProps) => JSX.Element>(
+  ({ elements, indentation }: ElementsProps) => {
+    return (
+      <>
+        {elements.map((el, index) => {
+          const key = `el-${index}`;
+          if (el instanceof XmlText && el.type === XmlNode.TYPE_TEXT) {
+            return <TextElement key={key} element={el} />;
+          } else if (
+            el instanceof XmlElement &&
+            el.type === XmlNode.TYPE_ELEMENT
+          ) {
+            return <Element key={key} element={el} indentation={indentation} />;
+          } else if (
+            el instanceof XmlComment &&
+            el.type === XmlNode.TYPE_COMMENT
+          ) {
+            return (
+              <CommentElement
+                key={key}
+                element={el}
+                indentation={indentation}
+              />
+            );
+          } else if (el instanceof XmlCdata && el.type === XmlNode.TYPE_CDATA) {
+            return (
+              <CDataElement key={key} element={el} indentation={indentation} />
+            );
+          }
           return (
             <InstructionElement
               key={key}
-              element={el}
+              element={el as XmlProcessingInstruction}
               indentation={indentation}
             />
           );
-        }
-        return null;
-      })}
-    </>
-  );
-});
+        })}
+      </>
+    );
+  }
+);
 
 Elements.displayName = "Elements";

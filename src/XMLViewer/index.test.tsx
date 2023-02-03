@@ -60,7 +60,7 @@ describe("Collapsible", () => {
       })
     );
 
-    expect(container.firstChild as HTMLElement).toHaveTextContent(/<note>/);
+    expect(container.firstChild as HTMLElement).toHaveTextContent(/<note\/>/);
   });
 
   it(`collapse when collapsible is set to 'true'`, () => {
@@ -101,7 +101,7 @@ describe("Collapsible selection", () => {
       })
     );
 
-    expect(container.firstChild as HTMLElement).toHaveTextContent(/<note>/);
+    expect(container.firstChild as HTMLElement).toHaveTextContent(/<note\/>/);
   });
 });
 

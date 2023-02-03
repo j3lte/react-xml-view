@@ -1,12 +1,14 @@
 import { createContext, useContext } from "react";
-import type { Theme } from "../index.types";
-import { ClassNames } from "../index.types";
+import { XmlElement } from "@rgrove/parse-xml";
+
+import type { Theme, ClassNames } from "../index.types";
 
 export type XMLViewerContextType = {
   theme: Theme;
   classNames: ClassNames;
   indentSize: number;
   collapsible: boolean;
+  onClickElement?: (element: XmlElement) => void;
 };
 
 export const noTheme: Theme = {

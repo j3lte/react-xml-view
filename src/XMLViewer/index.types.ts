@@ -1,5 +1,5 @@
-import { HTMLAttributes } from "react";
-import { ParserOptions } from "@rgrove/parse-xml";
+import type { HTMLAttributes } from "react";
+import type { ParserOptions, XmlElement } from "@rgrove/parse-xml";
 
 export type Theme = {
   /** set/unset the attribute key color (`<tag attribute-key="hello" />`) */
@@ -89,4 +89,10 @@ export type XMLViewerProps = HTMLAttributes<HTMLDivElement> & {
    * @optional
    */
   classNames?: ClassNames;
+  /**
+   * On Click XML Element Handler
+   *
+   * @optional
+   */
+  onClickElement?: (element: XmlElement) => void;
 };

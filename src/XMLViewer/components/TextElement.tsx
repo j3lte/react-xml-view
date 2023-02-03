@@ -9,18 +9,23 @@ interface TextElementProps {
   element: XmlText;
 }
 
-export const TextElement = memo(({ element }: TextElementProps) => {
-  const { theme, classNames } = useXMLViewerContext();
-  const { textColor, overflowBreak } = useMemo(() => getStyles(theme), [theme]);
+export const TextElement = memo<(props: TextElementProps) => JSX.Element>(
+  ({ element }: TextElementProps) => {
+    const { theme, classNames } = useXMLViewerContext();
+    const { textColor, overflowBreak } = useMemo(
+      () => getStyles(theme),
+      [theme]
+    );
 
-  return (
-    <span
-      className={clsx(classNames.text)}
-      style={{ ...textColor, ...overflowBreak }}
-    >
-      {element.text}
-    </span>
-  );
-});
+    return (
+      <span
+        className={clsx(classNames.text)}
+        style={{ ...textColor, ...overflowBreak }}
+      >
+        {element.text}
+      </span>
+    );
+  }
+);
 
 TextElement.displayName = "TextElement";

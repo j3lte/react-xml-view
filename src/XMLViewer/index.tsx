@@ -12,7 +12,7 @@ import {
 } from "./context";
 import { Elements } from "./components/Elements";
 
-const XMLViewer = ({
+const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
   xml,
   parserOptions,
   indentSize: optsIdentSize,
