@@ -1,7 +1,12 @@
 # react-xml-view
 
-[![npm](http://img.shields.io/npm/v/@j3lte/react-xml-view.svg)](https://www.npmjs.com/package/@j3lte/react-xml-view) [![CI](https://github.com/j3lte/react-xml-view/actions/workflows/ci.yml/badge.svg)](https://github.com/j3lte/react-xml-view/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/j3lte/react-xml-view/branch/main/graph/badge.svg?token=JZUQJXMB4C)](https://codecov.io/gh/j3lte/react-xml-view)
-
+[![npm](https://img.shields.io/npm/v/@j3lte/react-xml-view?label=NPM&logo=npm&style=flat-square)](https://www.npmjs.com/package/@j3lte/react-xml-view)
+![GitHub](https://img.shields.io/github/license/j3lte/react-xml-view?label=License&style=flat-square)
+![GitHub issues](https://img.shields.io/github/issues/j3lte/react-xml-view?label=Issues&style=flat-square)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/j3lte/react-xml-view/ci.yml?label=Build%20status&logo=github&style=flat-square)](https://github.com/j3lte/react-xml-view/actions/workflows/ci.yml)
+[![Codecov](https://img.shields.io/codecov/c/github/j3lte/react-xml-view?label=Code%20Coverage&logo=codecov&style=flat-square&token=JZUQJXMB4C)](https://codecov.io/gh/j3lte/react-xml-view)
+![npm type definitions](https://img.shields.io/npm/types/@j3lte/react-xml-view?style=flat-square)
+![npm bundle size](https://img.shields.io/bundlephobia/min/@j3lte/react-xml-view?label=Size&style=flat-square)
 
 A simple React component to display XML in a tree view.
 
