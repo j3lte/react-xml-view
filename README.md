@@ -52,6 +52,7 @@ export const App = () => {
 | parserOptions | object | `undefined` | The options to pass to the parser. See [@rgrove/parse-xml API DOCS](https://rgrove.github.io/parse-xml/types/ParserOptions.html) |
 | invalidXMLRenderer | Function | `undefined` | `(error: Error) => JSX.Element`. A function to render the error when the XML is invalid. |
 | theme | object/boolean | `undefined` | The theme to use. When `undefined`, it uses the standard theme. If this is set to `false`, it completely disables the theme. See below for more information |
+| classNames | object | `undefined` | The class names to use. See below for more information |
 
 ### Theme
 
@@ -69,6 +70,25 @@ The theme object can contain the following properties:
 | overflowBreak | `boolean` | `false` | adjust the xml to fit in the parent width without overflowing |
 
 > Note: for each color in the theme, you can set it to `false` to disable it.
+
+### Class names
+
+The class names object can contain the following properties, feel free to override them.
+
+| Name | Default |
+| --- | --- |
+| attributeList | `"xml-attribute-list"` |
+| attribute | `"xml-attribute"` |
+| attributeKey | `"xml-attribute-key"` |
+| attributeValue | `"xml-attribute-value"` |
+| cdata | `"xml-cdata"` |
+| comment | `"xml-comment"` |
+| element | `"xml-element"` |
+| elementChildren | `"xml-element-children"` |
+| instruction | `"xml-instruction"` |
+| separator | `"xml-separator"` |
+| tag | `"xml-tag"` |
+| text | `"xml-text"` |
 
 ## License
 
