@@ -20,6 +20,9 @@
   "files": [
     "build"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "react",
     "xml",
