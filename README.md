@@ -6,7 +6,7 @@
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/j3lte/react-xml-view/ci.yml?label=Build%20status&logo=github&style=flat-square)](https://github.com/j3lte/react-xml-view/actions/workflows/ci.yml)
 [![Codecov](https://img.shields.io/codecov/c/github/j3lte/react-xml-view?label=Code%20Coverage&logo=codecov&style=flat-square&token=JZUQJXMB4C)](https://codecov.io/gh/j3lte/react-xml-view)
 ![npm type definitions](https://img.shields.io/npm/types/@j3lte/react-xml-view?style=flat-square)
-![npm bundle size](https://img.shields.io/bundlephobia/min/@j3lte/react-xml-view?label=Size&style=flat-square)
+[![Bundlephobia](https://img.shields.io/bundlephobia/min/@j3lte/react-xml-view?label=Size&style=flat-square)](https://bundlephobia.com/package/@j3lte/react-xml-view@latest)
 
 A simple React component to display XML in a tree view.
 
