@@ -33,13 +33,17 @@ export const App = () => {
 }
 ```
 
+> Note: The viewer will **NOT** show the XML declaration (examle: `<?xml version="1.0" encoding="UTF-8"?>`). This is due to a limitation in the XML parser.
+>
+> See [this explanation](https://rgrove.github.io/parse-xml/index.html#not-features)
+
 ## Props
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| xml | string | | The XML to display |
+| xml | string | | The XML to display. XML should have `UTF-8` character encoding, other encodings are not supported |
 | indent | number | 2 | The number of spaces to indent each level |
-| collapsible | boolean | false | Whether to collapse the tree by default |
+| collapsible | boolean | false | Whether the tree can be collapsed or not |
 | parserOptions | object | | The options to pass to the parser. See [@rgrove/parse-xml API DOCS](https://rgrove.github.io/parse-xml/types/ParserOptions.html) |
 | invalidXMLRenderer | Function | | `(error: Error) => JSX.Element`. A function to render the error when the XML is invalid. |
 | theme | object | | The theme to use. See below for more information |
