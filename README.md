@@ -3,6 +3,7 @@
 [![npm](https://img.shields.io/npm/v/@j3lte/react-xml-view?label=NPM&logo=npm&style=flat-square)](https://www.npmjs.com/package/@j3lte/react-xml-view)
 ![GitHub](https://img.shields.io/github/license/j3lte/react-xml-view?label=License&style=flat-square)
 ![GitHub issues](https://img.shields.io/github/issues/j3lte/react-xml-view?label=Issues&style=flat-square)
+[![GitHub last commit](https://img.shields.io/github/last-commit/j3lte/react-xml-view?label=Last%20Commit&logo=github&style=flat-square)](https://github.com/j3lte/react-xml-view/commits/main)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/j3lte/react-xml-view/ci.yml?label=Build%20status&logo=github&style=flat-square)](https://github.com/j3lte/react-xml-view/actions/workflows/ci.yml)
 [![Codecov](https://img.shields.io/codecov/c/github/j3lte/react-xml-view?label=Code%20Coverage&logo=codecov&style=flat-square&token=JZUQJXMB4C)](https://codecov.io/gh/j3lte/react-xml-view)
 ![npm type definitions](https://img.shields.io/npm/types/@j3lte/react-xml-view?style=flat-square)
