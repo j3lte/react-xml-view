@@ -1,6 +1,6 @@
 # react-xml-view
 
-[![npm](http://img.shields.io/npm/v/@j3lte/react-xml-view.svg)](https://www.npmjs.com/package/@j3lte/react-xml-view) [![CI](https://github.com/j3lte/react-xml-view/actions/workflows/ci.yml/badge.svg)](https://github.com/j3lte/react-xml-view/actions/workflows/ci.yml)
+[![npm](http://img.shields.io/npm/v/@j3lte/react-xml-view.svg)](https://www.npmjs.com/package/@j3lte/react-xml-view) [![CI](https://github.com/j3lte/react-xml-view/actions/workflows/ci.yml/badge.svg)](https://github.com/j3lte/react-xml-view/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/j3lte/react-xml-view/branch/main/graph/badge.svg?token=JZUQJXMB4C)](https://codecov.io/gh/j3lte/react-xml-view)
 
 
 A simple React component to display XML in a tree view.
