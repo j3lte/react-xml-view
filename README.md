@@ -1,5 +1,8 @@
 # react-xml-view
 
+[![npm](http://img.shields.io/npm/v/@j3lte/react-xml-view.svg)](https://www.npmjs.com/package/@j3lte/react-xml-view) [![CI](https://github.com/j3lte/react-xml-view/actions/workflows/ci.yml/badge.svg)](https://github.com/j3lte/react-xml-view/actions/workflows/ci.yml)
+
+
 A simple React component to display XML in a tree view.
 
 > This is a rewrite of `react-xml-viewer` in Typescript, with a different XML parsing library. The API is almost the same.
@@ -9,7 +12,7 @@ A simple React component to display XML in a tree view.
 ## Install
 
 ```bash
-npm install --save react-xml-view
+npm install --save @j3lte/react-xml-view
 ```
 
 ## Usage
