@@ -25,18 +25,23 @@ const isTextElement = (
   elements: Array<
     XmlElement | XmlText | XmlCdata | XmlComment | XmlProcessingInstruction
   >
-) => elements.length === 1 && elements[0].type === "text";
+) => {
+  return elements.length === 1 && elements[0].type === XmlNode.TYPE_TEXT;
+};
 
 const onSelectText: MouseEventHandler<HTMLSpanElement> = (e) => {
   e.stopPropagation();
 };
 
-const Element = memo(({ element, indentation }: ElementProps) => {
+const Element = ({ element, indentation }: ElementProps) => {
   const [collapsed, setCollapsed] = useState(false);
   const { theme, indentSize, collapsible } = useXMLViewerContext();
   const { name, attributes, children: elements } = element;
 
   const cursor = collapsible && elements ? "pointer" : "text";
+  const isTextCollapse = isTextElement(elements) || collapsed;
+
+  console.log(isTextCollapse);
 
   return (
     <div
@@ -76,7 +81,7 @@ const Element = memo(({ element, indentation }: ElementProps) => {
       {elements && <span style={{ color: theme.separatorColor }}>{">"}</span>}
     </div>
   );
-});
+};
 
 Element.displayName = "Element";
 
@@ -89,7 +94,7 @@ interface ElementsProps {
 
 export const Elements = memo(({ elements, indentation }: ElementsProps) => {
   return (
-    <div>
+    <>
       {elements.map((el, index) => {
         const key = `el-${index}`;
         if (el instanceof XmlText && el.type === XmlNode.TYPE_TEXT) {
@@ -124,7 +129,7 @@ export const Elements = memo(({ elements, indentation }: ElementsProps) => {
         }
         return null;
       })}
-    </div>
+    </>
   );
 });
 

@@ -18,3 +18,13 @@ Example.args = {
     preserveCdata: true,
   },
 };
+
+export const ColorExample = XMLViewerStory.bind({});
+ColorExample.args = {
+  xml: `<?xml version="1.0"?><colors><color name="red"><r>255</r><g>0</g><b>0</b></color><color name="green"><r>0</r><g>255</g><b>0</b></color><color name="blue"><r>0</r><g>0</g><b>255</b></color></colors>`,
+  collapsible: true,
+  parserOptions: {
+    preserveComments: true,
+    preserveCdata: true,
+  },
+};
