@@ -27,7 +27,6 @@ ColorExample.args = {
     preserveComments: true,
     preserveCdata: true,
   },
-  theme: {
-    attributeKeyColor: "#ff0000",
-  },
+  class: "xml-viewer",
+  theme: {},
 };

@@ -91,7 +91,8 @@
     "webpack": "5.74.0"
   },
   "dependencies": {
-    "@rgrove/parse-xml": "^4.0.1"
+    "@rgrove/parse-xml": "^4.0.1",
+    "clsx": "^1.2.1"
   },
   "pre-commit": [
     "lint"

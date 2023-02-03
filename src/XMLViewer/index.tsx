@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { parseXml, XmlDocument } from "@rgrove/parse-xml";
+import { clsx } from "clsx";
 
 import { XMLViewerProps, Theme } from "./index.types";
 import { Elements } from "./components/Elements";
@@ -12,6 +13,7 @@ const XMLViewer = ({
   theme: optsTheme,
   collapsible: optsCollapsible,
   invalidXMLRenderer,
+  className,
   ...props
 }: XMLViewerProps) => {
   const [xmlDocument, error] = useMemo(() => {
@@ -48,7 +50,7 @@ const XMLViewer = ({
     return invalidXMLRenderer ? (
       invalidXMLRenderer(error)
     ) : (
-      <div {...props}>
+      <div {...props} className={clsx(className, "has-error")}>
         <pre>{error.message}</pre>
       </div>
     );
