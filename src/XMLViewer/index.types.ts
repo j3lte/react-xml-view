@@ -2,22 +2,22 @@ import { HTMLAttributes } from "react";
 import { ParserOptions } from "@rgrove/parse-xml";
 
 export type Theme = {
-  /** set the attribute key color (`<tag attribute-key="hello" />`) */
-  attributeKeyColor: string;
-  /** set the attribute value color (`<tag attr="Attribute value">`) */
-  attributeValueColor: string;
-  /** set the cdata element color (`<![CDATA[some stuff]]>`) */
-  cdataColor: string;
-  /** set the comment color (`<!-- this is a comment -->`) */
-  commentColor: string;
+  /** set/unset the attribute key color (`<tag attribute-key="hello" />`) */
+  attributeKeyColor: string | boolean;
+  /** set/unset the attribute value color (`<tag attr="Attribute value">`) */
+  attributeValueColor: string | boolean;
+  /** set/unset the cdata element color (`<![CDATA[some stuff]]>`) */
+  cdataColor: string | boolean;
+  /** set/unset the comment color (`<!-- this is a comment -->`) */
+  commentColor: string | boolean;
   /** adjust the xml to fit in the parent width without overflowing */
   overflowBreak: boolean;
-  /** set the separators colors (`<`, `>`, `</`, `/>`, `=`, `<?`, `?>`) */
-  separatorColor: string;
-  /** set the tag name color (`<tag-name />`) */
-  tagColor: string;
-  /** set the text color (`<tag>Text</tag>`) */
-  textColor: string;
+  /** set/unset the separators colors (`<`, `>`, `</`, `/>`, `=`, `<?`, `?>`) */
+  separatorColor: string | boolean;
+  /** set/unset the tag name color (`<tag-name />`) */
+  tagColor: string | boolean;
+  /** set/unset the text color (`<tag>Text</tag>`) */
+  textColor: string | boolean;
 };
 
 export type XMLViewerProps = HTMLAttributes<HTMLDivElement> & {
@@ -64,9 +64,9 @@ export type XMLViewerProps = HTMLAttributes<HTMLDivElement> & {
    */
   collapsible?: boolean;
   /**
-   * The theme to use.
+   * The theme to use. This can be a partial theme or set to `false` to completely disable the theme.
    *
    * @optional
    */
-  theme?: Partial<Theme>;
+  theme?: Partial<Theme> | boolean;
 };

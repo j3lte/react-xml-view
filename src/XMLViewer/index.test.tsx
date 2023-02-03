@@ -155,31 +155,40 @@ describe("Processing Instructions", () => {
     const { container } = render(
       <XMLViewer xml='<root><?xml-stylesheet type="text/xsl" href="style.xsl"?></root>' />
     );
-
     expect(container).toHaveTextContent(/xml-stylesheet/);
   });
 });
 
 describe("Theme", () => {
-  it(`uses different theme colors`, () => {
+  it(`switch off theme`, () => {
+    const { container } = render(
+      <XMLViewer
+        xml={cDataXML}
+        parserOptions={{ preserveCdata: true, preserveComments: true }}
+        theme={false}
+      />
+    );
+    expect(container.innerHTML).not.toMatch(/style="color:/);
+    expect(container.innerHTML).not.toMatch(/overflow-wrap: break-word/);
+  });
+
+  it(`overflow break`, () => {
     const { container } = render(
       <XMLViewer
         xml={cDataXML}
         parserOptions={{ preserveCdata: true, preserveComments: true }}
         theme={{
-          attributeKeyColor: "#00F",
-          attributeValueColor: "#00F",
-          cdataColor: "#00F",
+          attributeKeyColor: false,
+          attributeValueColor: false,
+          cdataColor: false,
+          commentColor: false,
+          separatorColor: false,
+          tagColor: false,
+          textColor: false,
           overflowBreak: true,
-          separatorColor: "#00F",
-          tagColor: "#00F",
-          textColor: "#00F",
-          commentColor: "#00F",
         }}
       />
     );
-
-    // TODO: Target specific elements and check their color
-    expect(container).toBeInTheDocument();
+    expect(container.innerHTML).toMatch(/overflow-wrap: break-word/);
   });
 });

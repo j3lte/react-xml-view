@@ -1,4 +1,4 @@
-import React, { memo, useState, MouseEventHandler } from "react";
+import React, { memo, useState, MouseEventHandler, useMemo } from "react";
 import {
   XmlCdata,
   XmlComment,
@@ -9,6 +9,7 @@ import {
 } from "@rgrove/parse-xml";
 
 import { useXMLViewerContext } from "../context/index";
+import { getStyles } from "../styles";
 
 import { TextElement } from "./TextElement";
 import { CommentElement } from "./CommentElement";
@@ -38,6 +39,8 @@ const onSelectText: MouseEventHandler<HTMLSpanElement> = (e) => {
 const Element = ({ element, indentation }: ElementProps) => {
   const [collapsed, setCollapsed] = useState(false);
   const { theme, indentSize, collapsible } = useXMLViewerContext();
+  const styles = useMemo(() => getStyles(theme), [theme]);
+
   const { name, attributes, children: elements } = element;
 
   const cursor = collapsible && elements ? "pointer" : "text";
@@ -57,12 +60,10 @@ const Element = ({ element, indentation }: ElementProps) => {
         }
       }}
     >
-      <span style={{ color: theme.separatorColor }}>{`${indentation}<`}</span>
-      <span style={{ color: theme.tagColor }}>{name}</span>
+      <span style={styles.separatorColor}>{`${indentation}<`}</span>
+      <span style={styles.tagColor}>{name}</span>
       {!collapsed && <Attributes attributes={attributes} />}
-      <span style={{ color: theme.separatorColor }}>
-        {elements ? ">" : "/>"}
-      </span>
+      <span style={styles.separatorColor}>{elements ? ">" : "/>"}</span>
       {elements && !collapsed && (
         <span onClick={onSelectText}>
           <Elements
@@ -72,12 +73,12 @@ const Element = ({ element, indentation }: ElementProps) => {
         </span>
       )}
       {elements && (
-        <span style={{ color: theme.separatorColor }}>{`${
+        <span style={styles.separatorColor}>{`${
           isTextElement(elements) || collapsed ? "" : indentation
         }</`}</span>
       )}
-      {elements && <span style={{ color: theme.tagColor }}>{name}</span>}
-      {elements && <span style={{ color: theme.separatorColor }}>{">"}</span>}
+      {elements && <span style={styles.tagColor}>{name}</span>}
+      {elements && <span style={styles.separatorColor}>{">"}</span>}
     </div>
   );
 };

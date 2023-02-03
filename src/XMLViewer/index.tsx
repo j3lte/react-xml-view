@@ -4,7 +4,11 @@ import { clsx } from "clsx";
 
 import type { XMLViewerProps, Theme } from "./index.types";
 
-import { defaultXMLViewerContext, XMLViewerContext } from "./context/index";
+import {
+  defaultXMLViewerContext,
+  XMLViewerContext,
+  noTheme,
+} from "./context/index";
 import { Elements } from "./components/Elements";
 
 const XMLViewer = ({
@@ -43,7 +47,9 @@ const XMLViewer = ({
             },
             {} as unknown as Theme
           )
-        : defaultXMLViewerContext.theme,
+        : typeof optsTheme === "undefined"
+        ? defaultXMLViewerContext.theme
+        : noTheme,
     [optsTheme]
   );
 

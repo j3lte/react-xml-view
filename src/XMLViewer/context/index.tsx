@@ -7,6 +7,17 @@ export type XMLViewerContextType = {
   collapsible: boolean;
 };
 
+export const noTheme: Theme = {
+  tagColor: false,
+  textColor: false,
+  attributeKeyColor: false,
+  attributeValueColor: false,
+  separatorColor: false,
+  commentColor: false,
+  cdataColor: false,
+  overflowBreak: false,
+};
+
 export const defaultXMLViewerContext: XMLViewerContextType = {
   theme: {
     tagColor: "#d43900",
