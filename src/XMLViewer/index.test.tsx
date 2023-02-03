@@ -183,7 +183,6 @@ describe("Theme", () => {
         theme={{
           attributeKeyColor: false,
           attributeValueColor: false,
-          cdataColor: false,
           commentColor: false,
           separatorColor: false,
           tagColor: false,
@@ -193,5 +192,20 @@ describe("Theme", () => {
       />
     );
     expect(container.innerHTML).toMatch(/overflow-wrap: break-word/);
+  });
+});
+
+describe("Classnames", () => {
+  it(`uses different classNames`, () => {
+    const { container } = render(
+      <XMLViewer
+        xml={cDataXML}
+        parserOptions={{ preserveCdata: true, preserveComments: true }}
+        classNames={{
+          element: "custom-element",
+        }}
+      />
+    );
+    expect(container.firstChild?.firstChild).toHaveClass("custom-element");
   });
 });
