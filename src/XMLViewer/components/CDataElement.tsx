@@ -1,4 +1,5 @@
 import React, { memo, useMemo } from "react";
+import clsx from "clsx";
 import type { XmlCdata } from "@rgrove/parse-xml";
 
 import { useXMLViewerContext } from "../context/index";
@@ -11,11 +12,11 @@ interface CDataElementProps {
 
 export const CDataElement = memo(
   ({ element, indentation }: CDataElementProps) => {
-    const { theme } = useXMLViewerContext();
+    const { theme, classNames } = useXMLViewerContext();
     const { cdataColor } = useMemo(() => getStyles(theme), [theme]);
 
     return (
-      <div style={cdataColor}>
+      <div className={clsx(classNames.cdata)} style={cdataColor}>
         {`${indentation}<![CDATA[${element.text}]]>`}
       </div>
     );

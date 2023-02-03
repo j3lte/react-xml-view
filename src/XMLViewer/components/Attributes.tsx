@@ -1,4 +1,5 @@
 import React, { memo, useMemo } from "react";
+import clsx from "clsx";
 
 import { useXMLViewerContext } from "../context/index";
 import { getStyles } from "../styles";
@@ -8,7 +9,7 @@ interface AttributesProps {
 }
 
 export const Attributes = memo(({ attributes }: AttributesProps) => {
-  const { theme } = useXMLViewerContext();
+  const { theme, classNames } = useXMLViewerContext();
   const {
     attributeKeyColor,
     attributeValueColor,
@@ -20,15 +21,30 @@ export const Attributes = memo(({ attributes }: AttributesProps) => {
 
   for (const [attrName, attrValue] of Object.entries(attributes)) {
     attributeList.push(
-      <span key={`attr-${attrName}[${attrValue}]`}>
-        <span style={attributeKeyColor}>{` ${attrName}`}</span>
-        <span style={separatorColor}>{"="}</span>
-        <span style={attributeValueColor}>{`"${attrValue}"`}</span>
+      <span
+        className={clsx(classNames.attribute)}
+        key={`attr-${attrName}[${attrValue}]`}
+      >
+        <span
+          className={clsx(classNames.attributeKey)}
+          style={attributeKeyColor}
+        >{` ${attrName}`}</span>
+        <span className={clsx(classNames.separator)} style={separatorColor}>
+          {"="}
+        </span>
+        <span
+          className={clsx(classNames.attributeValue)}
+          style={attributeValueColor}
+        >{`"${attrValue}"`}</span>
       </span>
     );
   }
 
-  return <span style={overflowBreak}>{attributeList}</span>;
+  return (
+    <span className={clsx(classNames.attributeList)} style={overflowBreak}>
+      {attributeList}
+    </span>
+  );
 });
 
 Attributes.displayName = "Attributes";

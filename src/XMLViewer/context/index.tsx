@@ -1,8 +1,10 @@
 import { createContext, useContext } from "react";
 import type { Theme } from "../index.types";
+import { ClassNames } from "../index.types";
 
 export type XMLViewerContextType = {
   theme: Theme;
+  classNames: ClassNames;
   indentSize: number;
   collapsible: boolean;
 };
@@ -18,6 +20,21 @@ export const noTheme: Theme = {
   overflowBreak: false,
 };
 
+export const defaultClassNames: ClassNames = {
+  attributeList: "xml-attribute-list",
+  attribute: "xml-attribute",
+  attributeKey: "xml-attribute-key",
+  attributeValue: "xml-attribute-value",
+  cdata: "xml-cdata",
+  comment: "xml-comment",
+  element: "xml-element",
+  elementChildren: "xml-element-children",
+  instruction: "xml-instruction",
+  separator: "xml-separator",
+  tag: "xml-tag",
+  text: "xml-text",
+};
+
 export const defaultXMLViewerContext: XMLViewerContextType = {
   theme: {
     tagColor: "#d43900",
@@ -29,6 +46,7 @@ export const defaultXMLViewerContext: XMLViewerContextType = {
     cdataColor: "#1d781d",
     overflowBreak: false,
   },
+  classNames: defaultClassNames,
   indentSize: 2,
   collapsible: true,
 };

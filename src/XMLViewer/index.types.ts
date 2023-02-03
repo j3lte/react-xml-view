@@ -20,6 +20,21 @@ export type Theme = {
   textColor: string | boolean;
 };
 
+export type ClassNames = {
+  attributeList?: string;
+  attribute?: string;
+  attributeKey?: string;
+  attributeValue?: string;
+  separator?: string;
+  cdata?: string;
+  comment?: string;
+  tag?: string;
+  text?: string;
+  instruction?: string;
+  element?: string;
+  elementChildren?: string;
+};
+
 export type XMLViewerProps = HTMLAttributes<HTMLDivElement> & {
   /**
    * The XML to display.
@@ -69,4 +84,9 @@ export type XMLViewerProps = HTMLAttributes<HTMLDivElement> & {
    * @optional
    */
   theme?: Partial<Theme> | boolean;
+  /**
+   * The class names to use.
+   * @optional
+   */
+  classNames?: ClassNames;
 };

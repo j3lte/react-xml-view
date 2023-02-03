@@ -1,4 +1,5 @@
 import React, { memo, useState, MouseEventHandler, useMemo } from "react";
+import clsx from "clsx";
 import {
   XmlCdata,
   XmlComment,
@@ -38,7 +39,7 @@ const onSelectText: MouseEventHandler<HTMLSpanElement> = (e) => {
 
 const Element = ({ element, indentation }: ElementProps) => {
   const [collapsed, setCollapsed] = useState(false);
-  const { theme, indentSize, collapsible } = useXMLViewerContext();
+  const { theme, classNames, indentSize, collapsible } = useXMLViewerContext();
   const styles = useMemo(() => getStyles(theme), [theme]);
 
   const { name, attributes, children: elements } = element;
@@ -47,6 +48,7 @@ const Element = ({ element, indentation }: ElementProps) => {
 
   return (
     <div
+      className={clsx(classNames.element)}
       style={{ whiteSpace: "pre", cursor }}
       onClick={(event) => {
         if (!element.children || !collapsible) {
@@ -60,12 +62,25 @@ const Element = ({ element, indentation }: ElementProps) => {
         }
       }}
     >
-      <span style={styles.separatorColor}>{`${indentation}<`}</span>
-      <span style={styles.tagColor}>{name}</span>
+      <span
+        className={clsx(classNames.separator)}
+        style={styles.separatorColor}
+      >{`${indentation}<`}</span>
+      <span className={clsx(classNames.tag)} style={styles.tagColor}>
+        {name}
+      </span>
       {!collapsed && <Attributes attributes={attributes} />}
-      <span style={styles.separatorColor}>{elements ? ">" : "/>"}</span>
+      <span
+        className={clsx(classNames.separator)}
+        style={styles.separatorColor}
+      >
+        {elements ? ">" : "/>"}
+      </span>
       {elements && !collapsed && (
-        <span onClick={onSelectText}>
+        <span
+          className={clsx(classNames.elementChildren)}
+          onClick={onSelectText}
+        >
           <Elements
             elements={elements}
             indentation={indentation + getIndentationString(indentSize)}
@@ -73,12 +88,24 @@ const Element = ({ element, indentation }: ElementProps) => {
         </span>
       )}
       {elements && (
-        <span style={styles.separatorColor}>{`${
-          isTextElement(elements) || collapsed ? "" : indentation
-        }</`}</span>
+        <span
+          className={clsx(classNames.separator)}
+          style={styles.separatorColor}
+        >{`${isTextElement(elements) || collapsed ? "" : indentation}</`}</span>
       )}
-      {elements && <span style={styles.tagColor}>{name}</span>}
-      {elements && <span style={styles.separatorColor}>{">"}</span>}
+      {elements && (
+        <span className={clsx(classNames.tag)} style={styles.tagColor}>
+          {name}
+        </span>
+      )}
+      {elements && (
+        <span
+          className={clsx(classNames.separator)}
+          style={styles.separatorColor}
+        >
+          {">"}
+        </span>
+      )}
     </div>
   );
 };

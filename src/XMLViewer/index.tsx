@@ -2,13 +2,14 @@ import React, { useMemo } from "react";
 import { parseXml, XmlDocument } from "@rgrove/parse-xml";
 import { clsx } from "clsx";
 
-import type { XMLViewerProps, Theme } from "./index.types";
+import type { XMLViewerProps, Theme, ClassNames } from "./index.types";
 
 import {
   defaultXMLViewerContext,
   XMLViewerContext,
   noTheme,
-} from "./context/index";
+  defaultClassNames,
+} from "./context";
 import { Elements } from "./components/Elements";
 
 const XMLViewer = ({
@@ -16,6 +17,7 @@ const XMLViewer = ({
   parserOptions,
   indentSize: optsIdentSize,
   theme: optsTheme,
+  classNames: optsClassNames,
   collapsible: optsCollapsible,
   invalidXMLRenderer,
   className,
@@ -52,6 +54,18 @@ const XMLViewer = ({
         : noTheme,
     [optsTheme]
   );
+  const classNames: ClassNames = useMemo(
+    () =>
+      optsClassNames
+        ? Object.keys(defaultClassNames).reduce<ClassNames>((acc, key) => {
+            return {
+              ...acc,
+              [key]: optsClassNames[key] ?? defaultClassNames[key],
+            };
+          }, {} as unknown as ClassNames)
+        : defaultClassNames,
+    [optsClassNames]
+  );
 
   if (error !== null) {
     return invalidXMLRenderer ? (
@@ -69,6 +83,7 @@ const XMLViewer = ({
         collapsible,
         indentSize,
         theme,
+        classNames,
       }}
     >
       <div className={clsx(className)} {...props}>
