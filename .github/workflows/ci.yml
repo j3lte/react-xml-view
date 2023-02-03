@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  run-linters:
+    name: Lint & Jest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: v18.5.0
+          cache: yarn
+      - name: Install dependencies
+        run: yarn --prefer-offline --frozen-lockfile
+      - name: Run linters
+        run: yarn lint
+      - name: Test
+        run: yarn test
