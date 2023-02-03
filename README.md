@@ -9,6 +9,9 @@ A simple React component to display XML in a tree view.
 >
 > See the original [here](https://github.com/alissonmbr/react-xml-viewer).
 
+## Codesandbox Demo
+
+[![Edit react-xml-view](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/j3lte-react-xml-view-7zq0uo)
 ## Install
 
 ```bash
