@@ -16,7 +16,7 @@ npm install --save react-xml-view
 
 ```tsx
 import React from 'react';
-import { XmlView } from 'react-xml-view';
+import { XmlView } from '@j3lte/react-xml-view';
 
 const xml = '<hello>World</hello>'
 

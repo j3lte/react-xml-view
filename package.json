@@ -1,5 +1,5 @@
 {
-  "name": "react-xml-view",
+  "name": "@j3lte/react-xml-view",
   "version": "1.0.0",
   "description": "A React component to display an XML string",
   "author": {
