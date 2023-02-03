@@ -17,10 +17,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: v18.5.0
-          cache: yarn
       - name: Install dependencies
-        run: yarn --prefer-offline --frozen-lockfile
+        run: npm ci
       - name: Run linters
-        run: yarn lint
+        run: npm run lint
       - name: Test
-        run: yarn test
+        run: npm run test
+      - name:
+        run: npm run build
