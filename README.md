@@ -33,7 +33,7 @@ export const App = () => {
 }
 ```
 
-> Note: The viewer will **NOT** show the XML declaration (examle: `<?xml version="1.0" encoding="UTF-8"?>`). This is due to a limitation in the XML parser.
+> Note: The viewer will **NOT** show the XML declaration (example: `<?xml version="1.0" encoding="UTF-8"?>`). This is due to a limitation in the XML parser.
 >
 > See [this explanation](https://rgrove.github.io/parse-xml/index.html#not-features)
 
