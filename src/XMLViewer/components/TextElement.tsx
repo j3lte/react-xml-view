@@ -1,6 +1,6 @@
-import { XmlText } from "@rgrove/parse-xml";
-import React, { CSSProperties } from "react";
-import { memo } from "react";
+import React, { CSSProperties, memo } from "react";
+import type { XmlText } from "@rgrove/parse-xml";
+
 import { useXMLViewerContext } from "../context";
 
 interface TextElementProps {

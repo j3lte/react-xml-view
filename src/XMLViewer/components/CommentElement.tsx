@@ -1,5 +1,6 @@
-import { XmlComment } from "@rgrove/parse-xml";
 import React, { memo } from "react";
+import type { XmlComment } from "@rgrove/parse-xml";
+
 import { useXMLViewerContext } from "../context/index";
 
 interface CommentElementProps {

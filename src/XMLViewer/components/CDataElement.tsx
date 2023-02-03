@@ -1,5 +1,6 @@
-import { XmlCdata } from "@rgrove/parse-xml";
 import React, { memo } from "react";
+import type { XmlCdata } from "@rgrove/parse-xml";
+
 import { useXMLViewerContext } from "../context/index";
 
 interface CDataElementProps {

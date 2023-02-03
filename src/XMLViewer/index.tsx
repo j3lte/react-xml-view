@@ -2,9 +2,10 @@ import React, { useMemo } from "react";
 import { parseXml, XmlDocument } from "@rgrove/parse-xml";
 import { clsx } from "clsx";
 
-import { XMLViewerProps, Theme } from "./index.types";
-import { Elements } from "./components/Elements";
+import type { XMLViewerProps, Theme } from "./index.types";
+
 import { defaultXMLViewerContext, XMLViewerContext } from "./context/index";
+import { Elements } from "./components/Elements";
 
 const XMLViewer = ({
   xml,

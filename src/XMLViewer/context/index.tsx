@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { Theme } from "../index.types";
+import type { Theme } from "../index.types";
 
 export type XMLViewerContextType = {
   theme: Theme;

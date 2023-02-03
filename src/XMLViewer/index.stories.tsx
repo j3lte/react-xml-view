@@ -1,7 +1,8 @@
-import { Story } from "@storybook/react";
 import React from "react";
+import { Story } from "@storybook/react";
 import XMLViewer from ".";
-import { XMLViewerProps } from "./index.types";
+
+import type { XMLViewerProps } from "./index.types";
 
 export default {
   title: "XMLViewer",

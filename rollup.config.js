@@ -11,6 +11,14 @@ import url from "rollup-plugin-url";
 import json from "@rollup/plugin-json";
 
 const packageJson = require("./package.json");
+const banner = `/**
+* @preserve
+* ${packageJson.name} v${packageJson.version}
+* ${packageJson.description}
+* ${packageJson.homepage}
+* (c) ${new Date().getFullYear()} ${packageJson.author.name} <${packageJson.author.email}>
+* @license ${packageJson.license}
+*/`
 
 export default {
   input: "src/index.ts",
@@ -19,14 +27,15 @@ export default {
       file: packageJson.main,
       format: "cjs",
       sourcemap: true,
+      banner,
     },
     {
       file: packageJson.module,
       format: "esm",
       sourcemap: true,
+      banner,
     },
   ],
-
   plugins: [
     del({ targets: "build/*" }),
     // devDependenciesnd and peerDependencies wont be included in the bundle
@@ -46,7 +55,18 @@ export default {
       extensions: [".js", ".jsx", ".ts", ".tsx"],
     }),
     postcss(),
-    terser(),
+    terser({
+      format: {
+        comments: (node, comment) => {
+          const text = comment.value;
+          const type = comment.type;
+          if (type == "comment2") {
+            // multiline comment
+            return /@preserve|@license|@cc_on/i.test(text);
+          }
+        },
+      },
+    }),
     analyze(),
     url(),
     json(),

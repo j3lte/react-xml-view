@@ -7,11 +7,13 @@ import {
   XmlText,
   XmlNode,
 } from "@rgrove/parse-xml";
+
+import { useXMLViewerContext } from "../context/index";
+
 import { TextElement } from "./TextElement";
 import { CommentElement } from "./CommentElement";
 import { CDataElement } from "./CDataElement";
 import { InstructionElement } from "./InstructionElement";
-import { useXMLViewerContext } from "../context/index";
 import { Attributes } from "./Attributes";
 
 interface ElementProps {

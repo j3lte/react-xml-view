@@ -1,6 +1,7 @@
 import React, { memo } from "react";
+import type { XmlProcessingInstruction } from "@rgrove/parse-xml";
+
 import { useXMLViewerContext } from "../context/index";
-import { XmlProcessingInstruction } from "@rgrove/parse-xml";
 
 interface InstructionElementProps {
   element: XmlProcessingInstruction;

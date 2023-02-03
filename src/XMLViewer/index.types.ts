@@ -1,5 +1,5 @@
-import { ParserOptions } from "@rgrove/parse-xml";
 import { HTMLAttributes } from "react";
+import { ParserOptions } from "@rgrove/parse-xml";
 
 export type Theme = {
   /** set the attribute key color (`<tag attribute-key="hello" />`) */
