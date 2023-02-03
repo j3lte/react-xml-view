@@ -1,19 +1,18 @@
 # react-xml-view
 
 [![npm](https://img.shields.io/npm/v/@j3lte/react-xml-view?label=NPM&logo=npm&style=flat-square)](https://www.npmjs.com/package/@j3lte/react-xml-view)
-![GitHub](https://img.shields.io/github/license/j3lte/react-xml-view?label=License&style=flat-square)
-![GitHub issues](https://img.shields.io/github/issues/j3lte/react-xml-view?label=Issues&style=flat-square)
+[![License](https://img.shields.io/github/license/j3lte/react-xml-view?color=%2344cc10&label=License&logo=github&style=flat-square)](https://github.com/j3lte/react-xml-view/blob/main/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/j3lte/react-xml-view?label=Issues&style=flat-square)](https://github.com/j3lte/react-xml-view/issues)
 [![GitHub last commit](https://img.shields.io/github/last-commit/j3lte/react-xml-view?label=Last%20Commit&logo=github&style=flat-square)](https://github.com/j3lte/react-xml-view/commits/main)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/j3lte/react-xml-view/ci.yml?label=Build%20status&logo=github&style=flat-square)](https://github.com/j3lte/react-xml-view/actions/workflows/ci.yml)
 [![Codecov](https://img.shields.io/codecov/c/github/j3lte/react-xml-view?label=Code%20Coverage&logo=codecov&style=flat-square&token=JZUQJXMB4C)](https://codecov.io/gh/j3lte/react-xml-view)
 ![npm type definitions](https://img.shields.io/npm/types/@j3lte/react-xml-view?style=flat-square)
 [![Bundlephobia](https://img.shields.io/bundlephobia/min/@j3lte/react-xml-view?label=Size&style=flat-square)](https://bundlephobia.com/package/@j3lte/react-xml-view@latest)
+[![DeepScan grade](https://flat.badgen.net/deepscan/grade/team/20288/project/23754/branch/724841?icon=deepscan&label=Deepscan)](https://deepscan.io/dashboard#view=project&tid=20288&pid=23754&bid=724841)
 
 A simple React component to display XML in a tree view.
 
-> This is a rewrite of `react-xml-viewer` in Typescript, with a different XML parsing library. The API is almost the same.
->
-> See the original [here](https://github.com/alissonmbr/react-xml-viewer).
+> Based on `react-xml-viewer`, see the original [here](https://github.com/alissonmbr/react-xml-viewer).
 
 ## Codesandbox Demo
 
