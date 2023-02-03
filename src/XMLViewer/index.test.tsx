@@ -6,9 +6,12 @@ const cDataXML = `<?xml version="1.0" encoding="UTF-8"?><note><!-- This is a com
 
 describe("Component Render & Error", () => {
   it(`shows xml`, () => {
-    const { container } = render(<XMLViewer xml="<notes></notes>" />);
+    const { container } = render(
+      <XMLViewer xml="<notes></notes>" className="xml-viewer" />
+    );
+    const { firstChild: renderEl } = container;
 
-    expect(container).toBeInTheDocument();
+    expect(renderEl).toHaveClass("xml-viewer");
     expect(container).toHaveTextContent(/notes/);
   });
 

@@ -71,7 +71,7 @@ const XMLViewer = ({
         theme,
       }}
     >
-      <div {...props}>
+      <div className={clsx(className)} {...props}>
         <Elements elements={[xmlDocument.root]} indentation="" />
       </div>
     </XMLViewerContext.Provider>
