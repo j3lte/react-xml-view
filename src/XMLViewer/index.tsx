@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { parseXml, XmlDocument } from "@rgrove/parse-xml";
+import { parseXml, XmlDocument, XmlElement } from "@rgrove/parse-xml";
 import { clsx } from "clsx";
 
 import type { XMLViewerProps, Theme, ClassNames } from "./index.types";
@@ -24,17 +24,17 @@ const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
   className,
   ...props
 }: XMLViewerProps) => {
-  const [xmlDocument, error] = useMemo(() => {
+  const [elements, error] = useMemo(() => {
     if (!xml) {
-      return [null, new Error("No XML to parse")];
+      return [[], new Error("No XML to parse")];
     }
     try {
       const xmlDocument = parseXml(xml, parserOptions);
-      return [xmlDocument, null];
+      return [[xmlDocument.root], null];
     } catch (error) {
-      return [null, error];
+      return [[], error];
     }
-  }, [xml, parserOptions]) as [XmlDocument | null, Error | null];
+  }, [xml, parserOptions]) as [Array<XmlElement>, Error | null];
 
   const indentSize = optsIdentSize || 2;
   const collapsible = optsCollapsible === undefined ? false : !!optsCollapsible;
@@ -89,7 +89,7 @@ const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
       }}
     >
       <div className={clsx(className)} {...props}>
-        <Elements elements={[xmlDocument.root]} indentation="" />
+        <Elements elements={elements} indentation="" />
       </div>
     </XMLViewerContext.Provider>
   );

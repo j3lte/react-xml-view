@@ -1,4 +1,4 @@
-import React, { memo, useState, MouseEventHandler, useMemo } from "react";
+import React, { memo, useState, useMemo } from "react";
 import clsx from "clsx";
 import {
   XmlCdata,
