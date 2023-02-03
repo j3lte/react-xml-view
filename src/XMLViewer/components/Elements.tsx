@@ -18,11 +18,6 @@ import { CDataElement } from "./CDataElement";
 import { InstructionElement } from "./InstructionElement";
 import { Attributes } from "./Attributes";
 
-interface ElementProps {
-  element: XmlElement;
-  indentation: string;
-}
-
 const getIndentationString = (size: number) => new Array(size + 1).join(" ");
 
 const isTextElement = (
@@ -33,28 +28,34 @@ const isTextElement = (
   return elements.length === 1 && elements[0].type === XmlNode.TYPE_TEXT;
 };
 
-const onSelectText: MouseEventHandler<HTMLSpanElement> = (e) => {
-  e.stopPropagation();
-};
+interface ElementProps {
+  element: XmlElement;
+  indentation: string;
+}
 
 const Element = memo(({ element, indentation }: ElementProps) => {
   const [collapsed, setCollapsed] = useState(false);
-  const { theme, classNames, indentSize, collapsible } = useXMLViewerContext();
+  const { theme, classNames, indentSize, collapsible, onClickElement } =
+    useXMLViewerContext();
   const styles = useMemo(() => getStyles(theme), [theme]);
 
   const hasChildren = element.children && element.children.length > 0;
-  const cursor = collapsible && hasChildren ? "pointer" : "text";
+  const cursor = collapsible ? "pointer" : "text";
 
   return (
     <div
       className={clsx(classNames.element)}
       style={{ whiteSpace: "pre", cursor }}
       onClick={(event) => {
+        event.stopPropagation();
+        event.preventDefault();
+
+        if (onClickElement) {
+          onClickElement(element);
+        }
         if (!element.children || !collapsible) {
           return;
         }
-        event.stopPropagation();
-        event.preventDefault();
 
         if (window.getSelection().toString() === "") {
           setCollapsed(!collapsed);
@@ -78,7 +79,12 @@ const Element = memo(({ element, indentation }: ElementProps) => {
       {hasChildren && !collapsed && (
         <span
           className={clsx(classNames.elementChildren)}
-          onClick={onSelectText}
+          onClick={(e) => {
+            if (onClickElement) {
+              onClickElement(element);
+            }
+            e.stopPropagation();
+          }}
         >
           <Elements
             elements={element.children}

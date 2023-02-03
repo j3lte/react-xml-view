@@ -209,3 +209,38 @@ describe("Classnames", () => {
     expect(container.firstChild?.firstChild).toHaveClass("custom-element");
   });
 });
+
+describe("Click handler", () => {
+  it(`calls click handler`, () => {
+    const clickHandler = jest.fn();
+    const normalClickHandler = jest.fn();
+
+    const { container } = render(
+      <XMLViewer
+        xml={`<?xml version="1.0"?><colors><color name="red"><r>255</r><g>0</g><b>0</b></color><color name="green"><r>0</r><g>255</g><b>0</b></color><color name="blue"><r>0</r><g>0</g><b>255</b></color></colors>`}
+        parserOptions={{ preserveCdata: true, preserveComments: true }}
+        onClickElement={clickHandler}
+        onClick={normalClickHandler}
+      />
+    );
+
+    fireEvent(
+      container.querySelector("span.xml-element-children"),
+      new MouseEvent("click", {
+        bubbles: true,
+        cancelable: true,
+      })
+    );
+
+    fireEvent(
+      container.firstChild?.firstChild as HTMLElement,
+      new MouseEvent("click", {
+        bubbles: true,
+        cancelable: true,
+      })
+    );
+
+    expect(clickHandler).toHaveBeenCalled();
+    expect(normalClickHandler).not.toHaveBeenCalled();
+  });
+});

@@ -19,6 +19,7 @@ const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
   theme: optsTheme,
   classNames: optsClassNames,
   collapsible: optsCollapsible,
+  onClickElement,
   invalidXMLRenderer,
   className,
   ...props
@@ -84,6 +85,7 @@ const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
         indentSize,
         theme,
         classNames,
+        onClickElement,
       }}
     >
       <div className={clsx(className)} {...props}>
