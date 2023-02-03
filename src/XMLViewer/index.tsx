@@ -35,7 +35,7 @@ const XMLViewer = ({
             (acc, key) => {
               return {
                 ...acc,
-                [key]: theme[key] ?? defaultXMLViewerContext.theme[key],
+                [key]: optsTheme[key] ?? defaultXMLViewerContext.theme[key],
               };
             },
             {} as unknown as Theme

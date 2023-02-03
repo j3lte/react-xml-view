@@ -1,6 +1,6 @@
 {
   "name": "@j3lte/react-xml-view",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A React component to display an XML string",
   "author": {
     "name": "J.W. Lagendijk",

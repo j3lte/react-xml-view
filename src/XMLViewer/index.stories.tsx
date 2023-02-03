@@ -27,4 +27,7 @@ ColorExample.args = {
     preserveComments: true,
     preserveCdata: true,
   },
+  theme: {
+    attributeKeyColor: "#ff0000",
+  },
 };

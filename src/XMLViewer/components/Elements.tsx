@@ -39,9 +39,6 @@ const Element = ({ element, indentation }: ElementProps) => {
   const { name, attributes, children: elements } = element;
 
   const cursor = collapsible && elements ? "pointer" : "text";
-  const isTextCollapse = isTextElement(elements) || collapsed;
-
-  console.log(isTextCollapse);
 
   return (
     <div
