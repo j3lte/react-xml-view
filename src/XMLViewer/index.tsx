@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { parseXml, XmlDocument, XmlElement } from "@rgrove/parse-xml";
+import { parseXml, XmlElement } from "@rgrove/parse-xml";
 import { clsx } from "clsx";
 
 import type { XMLViewerProps, Theme, ClassNames } from "./index.types";
