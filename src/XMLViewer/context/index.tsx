@@ -1,8 +1,9 @@
 import { createContext, useContext, useMemo } from "react";
+
 import { XmlElement } from "@rgrove/parse-xml";
 
 import type { Theme, ClassNames } from "../index.types";
-import { getStyles } from "../styles/index";
+import getStyles from "../styles/index";
 
 export type XMLViewerContextType = {
   theme: Theme;

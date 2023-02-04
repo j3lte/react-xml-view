@@ -1,5 +1,5 @@
 import React, { memo, useState } from "react";
-import clsx from "clsx";
+
 import type {
   XmlElement,
   XmlCdata,
@@ -8,9 +8,12 @@ import type {
   XmlText,
 } from "@rgrove/parse-xml";
 import { XmlNode } from "@rgrove/parse-xml";
+import clsx from "clsx";
+
 import { useStyles, useXMLViewerContext } from "../context/index";
-import { Attributes } from "./Attributes";
-import { Elements } from "./Elements";
+
+import Attributes from "./Attributes";
+import Elements from "./Elements";
 
 const getIndentationString = (size: number) => new Array(size + 1).join(" ");
 
@@ -27,7 +30,7 @@ interface ElementProps {
   indentation: string;
 }
 
-export const Element = memo(({ element, indentation }: ElementProps) => {
+const Element = memo(({ element, indentation }: ElementProps) => {
   const [collapsed, setCollapsed] = useState(false);
   const { classNames, indentSize, collapsible, onClickElement } =
     useXMLViewerContext();
@@ -103,3 +106,5 @@ export const Element = memo(({ element, indentation }: ElementProps) => {
 });
 
 Element.displayName = "Element";
+
+export default Element;

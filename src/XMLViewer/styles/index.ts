@@ -1,4 +1,5 @@
 import { CSSProperties } from "react";
+
 import { Theme } from "../index.types";
 
 type Styles = {
@@ -12,7 +13,7 @@ type Styles = {
   textColor: CSSProperties;
 };
 
-export const getStyles = (theme: Theme): Styles => ({
+const getStyles = (theme: Theme): Styles => ({
   attributeKeyColor:
     typeof theme.attributeKeyColor === "string"
       ? { color: theme.attributeKeyColor }
@@ -36,3 +37,5 @@ export const getStyles = (theme: Theme): Styles => ({
   textColor:
     typeof theme.textColor === "string" ? { color: theme.textColor } : {},
 });
+
+export default getStyles;

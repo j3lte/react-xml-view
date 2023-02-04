@@ -1,6 +1,7 @@
 import React, { memo } from "react";
-import clsx from "clsx";
+
 import type { XmlCdata } from "@rgrove/parse-xml";
+import clsx from "clsx";
 
 import { useStyles, useXMLViewerContext } from "../context/index";
 
@@ -9,7 +10,7 @@ interface CDataElementProps {
   indentation: string;
 }
 
-export const CDataElement = memo<(props: CDataElementProps) => JSX.Element>(
+const CDataElement = memo<(props: CDataElementProps) => JSX.Element>(
   ({ element, indentation }: CDataElementProps) => {
     const { classNames } = useXMLViewerContext();
     const { cdataColor } = useStyles();
@@ -23,3 +24,5 @@ export const CDataElement = memo<(props: CDataElementProps) => JSX.Element>(
 );
 
 CDataElement.displayName = "CDataElement";
+
+export default CDataElement;

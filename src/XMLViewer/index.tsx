@@ -1,16 +1,16 @@
 import React, { useMemo } from "react";
+
 import { parseXml, XmlElement } from "@rgrove/parse-xml";
 import { clsx } from "clsx";
 
-import type { XMLViewerProps, Theme, ClassNames } from "./index.types";
-
+import Elements from "./components/Elements";
 import {
   defaultXMLViewerContext,
   XMLViewerContext,
   noTheme,
   defaultClassNames,
 } from "./context";
-import { Elements } from "./components/Elements";
+import type { XMLViewerProps, Theme, ClassNames } from "./index.types";
 
 const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
   xml,
@@ -32,8 +32,8 @@ const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
     try {
       const xmlDocument = parseXml(xml, parserOptions);
       return [[xmlDocument.root], null];
-    } catch (error) {
-      return [[], error];
+    } catch (parseError) {
+      return [[], parseError];
     }
   }, [xml, parserOptions]) as [Array<XmlElement>, Error | null];
 
@@ -65,6 +65,25 @@ const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
     [optsClassNames],
   );
 
+  const context = useMemo(
+    () => ({
+      collapsible,
+      indentSize,
+      theme,
+      classNames,
+      onClickElement,
+      cleanEmptyTextNodes,
+    }),
+    [
+      collapsible,
+      indentSize,
+      theme,
+      classNames,
+      onClickElement,
+      cleanEmptyTextNodes,
+    ],
+  );
+
   if (error !== null) {
     return invalidXMLRenderer ? (
       invalidXMLRenderer(error)
@@ -76,16 +95,7 @@ const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
   }
 
   return (
-    <XMLViewerContext.Provider
-      value={{
-        collapsible,
-        indentSize,
-        theme,
-        classNames,
-        onClickElement,
-        cleanEmptyTextNodes,
-      }}
-    >
+    <XMLViewerContext.Provider value={context}>
       <div className={clsx(className)} {...props}>
         <Elements elements={elements} indentation="" />
       </div>

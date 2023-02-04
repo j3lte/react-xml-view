@@ -1,6 +1,7 @@
 import React, { memo } from "react";
-import clsx from "clsx";
+
 import type { XmlProcessingInstruction } from "@rgrove/parse-xml";
+import clsx from "clsx";
 
 import { useStyles, useXMLViewerContext } from "../context/index";
 
@@ -9,7 +10,7 @@ interface InstructionElementProps {
   indentation: string;
 }
 
-export const InstructionElement = memo<
+const InstructionElement = memo<
   (props: InstructionElementProps) => JSX.Element
 >(({ element, indentation }: InstructionElementProps) => {
   const { classNames } = useXMLViewerContext();
@@ -37,3 +38,5 @@ export const InstructionElement = memo<
 });
 
 InstructionElement.displayName = "InstructionElement";
+
+export default InstructionElement;

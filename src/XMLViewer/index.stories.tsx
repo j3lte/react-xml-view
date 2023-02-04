@@ -1,12 +1,15 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from "react";
+
+import { ParserOptions } from "@rgrove/parse-xml";
 import { Story } from "@storybook/react";
-import XMLViewer from ".";
+
+import xmlIBM from "../../test-files/ibm_oasis_valid.xml";
+import xmlOrders from "../../test-files/orders.xml";
 
 import type { XMLViewerProps } from "./index.types";
 
-import xmlOrders from "../../test-files/orders.xml";
-import xmlIBM from "../../test-files/ibm_oasis_valid.xml";
-import { ParserOptions } from "@rgrove/parse-xml";
+import XMLViewer from ".";
 
 export default {
   title: "XMLViewer",

@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+
 import type {
   XmlCdata,
   XmlComment,
@@ -8,12 +9,13 @@ import type {
 } from "@rgrove/parse-xml";
 import { XmlNode } from "@rgrove/parse-xml";
 
-import { Element } from "./Element";
-import { TextElement } from "./TextElement";
-import { CommentElement } from "./CommentElement";
-import { CDataElement } from "./CDataElement";
-import { InstructionElement } from "./InstructionElement";
 import { useXMLViewerContext } from "../context";
+
+import CDataElement from "./CDataElement";
+import CommentElement from "./CommentElement";
+import Element from "./Element";
+import InstructionElement from "./InstructionElement";
+import TextElement from "./TextElement";
 
 interface ElementsProps {
   elements: Array<
@@ -22,7 +24,7 @@ interface ElementsProps {
   indentation: string;
 }
 
-export const Elements = memo<(props: ElementsProps) => JSX.Element>(
+const Elements = memo<(props: ElementsProps) => JSX.Element>(
   ({ elements, indentation }: ElementsProps) => {
     const { cleanEmptyTextNodes } = useXMLViewerContext();
     return (
@@ -79,3 +81,5 @@ export const Elements = memo<(props: ElementsProps) => JSX.Element>(
 );
 
 Elements.displayName = "Elements";
+
+export default Elements;

@@ -1,3 +1,4 @@
 *.scss
 *.css
 /node_modules/
+.eslintrc.js

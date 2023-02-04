@@ -1,6 +1,7 @@
 import React, { memo } from "react";
-import clsx from "clsx";
+
 import type { XmlComment } from "@rgrove/parse-xml";
+import clsx from "clsx";
 
 import { useStyles, useXMLViewerContext } from "../context/index";
 
@@ -9,7 +10,7 @@ interface CommentElementProps {
   indentation: string;
 }
 
-export const CommentElement = memo<(props: CommentElementProps) => JSX.Element>(
+const CommentElement = memo<(props: CommentElementProps) => JSX.Element>(
   ({ element, indentation }: CommentElementProps) => {
     const { classNames } = useXMLViewerContext();
     const { commentColor } = useStyles();
@@ -23,3 +24,5 @@ export const CommentElement = memo<(props: CommentElementProps) => JSX.Element>(
 );
 
 CommentElement.displayName = "CommentElement";
+
+export default CommentElement;

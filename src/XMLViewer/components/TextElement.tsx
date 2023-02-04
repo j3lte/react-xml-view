@@ -1,6 +1,7 @@
 import React, { memo } from "react";
-import clsx from "clsx";
+
 import type { XmlText } from "@rgrove/parse-xml";
+import clsx from "clsx";
 
 import { useStyles, useXMLViewerContext } from "../context";
 
@@ -8,7 +9,7 @@ interface TextElementProps {
   element: XmlText;
 }
 
-export const TextElement = memo<(props: TextElementProps) => JSX.Element>(
+const TextElement = memo<(props: TextElementProps) => JSX.Element>(
   ({ element }: TextElementProps) => {
     const { classNames, cleanEmptyTextNodes } = useXMLViewerContext();
     const { textColor, overflowBreak } = useStyles();
@@ -26,3 +27,5 @@ export const TextElement = memo<(props: TextElementProps) => JSX.Element>(
 );
 
 TextElement.displayName = "TextElement";
+
+export default TextElement;
