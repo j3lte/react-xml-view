@@ -1,9 +1,8 @@
-import React, { memo, useMemo } from "react";
+import React, { memo } from "react";
 import clsx from "clsx";
 import type { XmlProcessingInstruction } from "@rgrove/parse-xml";
 
-import { useXMLViewerContext } from "../context/index";
-import { getStyles } from "../styles";
+import { useStyles, useXMLViewerContext } from "../context/index";
 
 interface InstructionElementProps {
   element: XmlProcessingInstruction;
@@ -13,24 +12,25 @@ interface InstructionElementProps {
 export const InstructionElement = memo<
   (props: InstructionElementProps) => JSX.Element
 >(({ element, indentation }: InstructionElementProps) => {
-  const { theme, classNames } = useXMLViewerContext();
-  const styles = useMemo(() => getStyles(theme), [theme]);
+  const { classNames } = useXMLViewerContext();
+  const { separatorColor, tagColor, attributeKeyColor } = useStyles();
+
   return (
     <div className={clsx(classNames.instruction)}>
       <span
         className={clsx(classNames.separator)}
-        style={styles.separatorColor}
+        style={separatorColor}
       >{`${indentation}<?`}</span>
-      <span className={clsx(classNames.tag)} style={styles.tagColor}>
+      <span className={clsx(classNames.tag)} style={tagColor}>
         {element.name}
       </span>
       <span
         className={clsx(classNames.attributeKey)}
-        style={styles.attributeKeyColor}
+        style={attributeKeyColor}
       >{` ${element.content}`}</span>
       <span
         className={clsx(classNames.separator)}
-        style={styles.separatorColor}
+        style={separatorColor}
       >{`?>`}</span>
     </div>
   );

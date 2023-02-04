@@ -1,9 +1,8 @@
-import React, { memo, useMemo } from "react";
+import React, { memo } from "react";
 import clsx from "clsx";
 import type { XmlCdata } from "@rgrove/parse-xml";
 
-import { useXMLViewerContext } from "../context/index";
-import { getStyles } from "../styles";
+import { useStyles, useXMLViewerContext } from "../context/index";
 
 interface CDataElementProps {
   element: XmlCdata;
@@ -12,8 +11,8 @@ interface CDataElementProps {
 
 export const CDataElement = memo<(props: CDataElementProps) => JSX.Element>(
   ({ element, indentation }: CDataElementProps) => {
-    const { theme, classNames } = useXMLViewerContext();
-    const { cdataColor } = useMemo(() => getStyles(theme), [theme]);
+    const { classNames } = useXMLViewerContext();
+    const { cdataColor } = useStyles();
 
     return (
       <div className={clsx(classNames.cdata)} style={cdataColor}>

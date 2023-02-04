@@ -1,7 +1,8 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useMemo } from "react";
 import { XmlElement } from "@rgrove/parse-xml";
 
 import type { Theme, ClassNames } from "../index.types";
+import { getStyles } from "../styles/index";
 
 export type XMLViewerContextType = {
   theme: Theme;
@@ -55,3 +56,8 @@ export const defaultXMLViewerContext: XMLViewerContextType = {
 
 export const XMLViewerContext = createContext<XMLViewerContextType>(null);
 export const useXMLViewerContext = () => useContext(XMLViewerContext);
+export const useStyles = () => {
+  const { theme } = useXMLViewerContext();
+  const styles = useMemo(() => getStyles(theme), [theme]);
+  return styles;
+};

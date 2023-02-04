@@ -1,4 +1,4 @@
-import React, { memo, useState, useMemo } from "react";
+import React, { memo, useState } from "react";
 import clsx from "clsx";
 import type {
   XmlElement,
@@ -8,8 +8,7 @@ import type {
   XmlText,
 } from "@rgrove/parse-xml";
 import { XmlNode } from "@rgrove/parse-xml";
-import { useXMLViewerContext } from "../context/index";
-import { getStyles } from "../styles";
+import { useStyles, useXMLViewerContext } from "../context/index";
 import { Attributes } from "./Attributes";
 import { Elements } from "./Elements";
 
@@ -30,9 +29,9 @@ interface ElementProps {
 
 export const Element = memo(({ element, indentation }: ElementProps) => {
   const [collapsed, setCollapsed] = useState(false);
-  const { theme, classNames, indentSize, collapsible, onClickElement } =
+  const { classNames, indentSize, collapsible, onClickElement } =
     useXMLViewerContext();
-  const styles = useMemo(() => getStyles(theme), [theme]);
+  const { separatorColor, tagColor } = useStyles();
 
   const hasChildren = element.children && element.children.length > 0;
   const cursor = collapsible ? "pointer" : "text";
@@ -59,16 +58,13 @@ export const Element = memo(({ element, indentation }: ElementProps) => {
     >
       <span
         className={clsx(classNames.separator)}
-        style={styles.separatorColor}
+        style={separatorColor}
       >{`${indentation}<`}</span>
-      <span className={clsx(classNames.tag)} style={styles.tagColor}>
+      <span className={clsx(classNames.tag)} style={tagColor}>
         {element.name}
       </span>
       {!collapsed && <Attributes attributes={element.attributes} />}
-      <span
-        className={clsx(classNames.separator)}
-        style={styles.separatorColor}
-      >
+      <span className={clsx(classNames.separator)} style={separatorColor}>
         {hasChildren ? ">" : "/>"}
       </span>
       {hasChildren && !collapsed && (
@@ -88,23 +84,17 @@ export const Element = memo(({ element, indentation }: ElementProps) => {
         </span>
       )}
       {hasChildren && (
-        <span
-          className={clsx(classNames.separator)}
-          style={styles.separatorColor}
-        >{`${
+        <span className={clsx(classNames.separator)} style={separatorColor}>{`${
           isTextElement(element.children) || collapsed ? "" : indentation
         }</`}</span>
       )}
       {hasChildren && (
-        <span className={clsx(classNames.tag)} style={styles.tagColor}>
+        <span className={clsx(classNames.tag)} style={tagColor}>
           {element.name}
         </span>
       )}
       {hasChildren && (
-        <span
-          className={clsx(classNames.separator)}
-          style={styles.separatorColor}
-        >
+        <span className={clsx(classNames.separator)} style={separatorColor}>
           {">"}
         </span>
       )}

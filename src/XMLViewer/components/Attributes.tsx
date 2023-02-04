@@ -1,8 +1,7 @@
-import React, { memo, useMemo } from "react";
+import React, { memo } from "react";
 import clsx from "clsx";
 
-import { useXMLViewerContext } from "../context/index";
-import { getStyles } from "../styles";
+import { useStyles, useXMLViewerContext } from "../context/index";
 
 interface AttributesProps {
   attributes: { [attrName: string]: string };
@@ -10,14 +9,13 @@ interface AttributesProps {
 
 export const Attributes = memo<(props: AttributesProps) => JSX.Element>(
   ({ attributes }: AttributesProps) => {
-    const { theme, classNames } = useXMLViewerContext();
+    const { classNames } = useXMLViewerContext();
     const {
       attributeKeyColor,
       attributeValueColor,
       overflowBreak,
       separatorColor,
-    } = useMemo(() => getStyles(theme), [theme]);
-
+    } = useStyles();
     let attributeList: JSX.Element[] = [];
 
     for (const [attrName, attrValue] of Object.entries(attributes)) {

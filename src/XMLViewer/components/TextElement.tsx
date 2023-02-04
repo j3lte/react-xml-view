@@ -1,9 +1,8 @@
-import React, { memo, useMemo } from "react";
+import React, { memo } from "react";
 import clsx from "clsx";
 import type { XmlText } from "@rgrove/parse-xml";
 
-import { useXMLViewerContext } from "../context";
-import { getStyles } from "../styles";
+import { useStyles, useXMLViewerContext } from "../context";
 
 interface TextElementProps {
   element: XmlText;
@@ -11,11 +10,8 @@ interface TextElementProps {
 
 export const TextElement = memo<(props: TextElementProps) => JSX.Element>(
   ({ element }: TextElementProps) => {
-    const { theme, classNames } = useXMLViewerContext();
-    const { textColor, overflowBreak } = useMemo(
-      () => getStyles(theme),
-      [theme]
-    );
+    const { classNames } = useXMLViewerContext();
+    const { textColor, overflowBreak } = useStyles();
 
     return (
       <span

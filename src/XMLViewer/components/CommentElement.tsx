@@ -1,9 +1,8 @@
-import React, { memo, useMemo } from "react";
+import React, { memo } from "react";
 import clsx from "clsx";
 import type { XmlComment } from "@rgrove/parse-xml";
 
-import { useXMLViewerContext } from "../context/index";
-import { getStyles } from "../styles/index";
+import { useStyles, useXMLViewerContext } from "../context/index";
 
 interface CommentElementProps {
   element: XmlComment;
@@ -12,8 +11,8 @@ interface CommentElementProps {
 
 export const CommentElement = memo<(props: CommentElementProps) => JSX.Element>(
   ({ element, indentation }: CommentElementProps) => {
-    const { theme, classNames } = useXMLViewerContext();
-    const { commentColor } = useMemo(() => getStyles(theme), [theme]);
+    const { classNames } = useXMLViewerContext();
+    const { commentColor } = useStyles();
 
     return (
       <div className={clsx(classNames.comment)} style={commentColor}>
