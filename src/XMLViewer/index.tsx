@@ -38,33 +38,27 @@ const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
 
   const indentSize = optsIdentSize || 2;
   const collapsible = optsCollapsible === undefined ? false : !!optsCollapsible;
+
   const theme: Theme = useMemo(
     () =>
-      optsTheme
-        ? Object.keys(defaultXMLViewerContext.theme).reduce<Theme>(
-            (acc, key) => {
-              return {
-                ...acc,
-                [key]: optsTheme[key] ?? defaultXMLViewerContext.theme[key],
-              };
-            },
-            {} as unknown as Theme
-          )
-        : typeof optsTheme === "undefined"
+      typeof optsTheme === "undefined"
         ? defaultXMLViewerContext.theme
-        : noTheme,
+        : typeof optsTheme === "boolean"
+        ? optsTheme
+          ? defaultXMLViewerContext.theme
+          : noTheme
+        : {
+            ...defaultXMLViewerContext.theme,
+            ...optsTheme,
+          },
     [optsTheme]
   );
+
   const classNames: ClassNames = useMemo(
-    () =>
-      optsClassNames
-        ? Object.keys(defaultClassNames).reduce<ClassNames>((acc, key) => {
-            return {
-              ...acc,
-              [key]: optsClassNames[key] ?? defaultClassNames[key],
-            };
-          }, {} as unknown as ClassNames)
-        : defaultClassNames,
+    () => ({
+      ...defaultClassNames,
+      ...optsClassNames,
+    }),
     [optsClassNames]
   );
 
