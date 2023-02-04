@@ -19,6 +19,7 @@ const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
   theme: optsTheme,
   classNames: optsClassNames,
   collapsible: optsCollapsible,
+  cleanEmptyTextNodes: optsCleanEmptyTextNodes,
   onClickElement,
   invalidXMLRenderer,
   className,
@@ -38,6 +39,8 @@ const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
 
   const indentSize = optsIdentSize || 2;
   const collapsible = optsCollapsible === undefined ? false : !!optsCollapsible;
+  const cleanEmptyTextNodes =
+    optsCleanEmptyTextNodes === undefined ? false : !!optsCleanEmptyTextNodes;
 
   const theme: Theme = useMemo(
     () =>
@@ -80,6 +83,7 @@ const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
         theme,
         classNames,
         onClickElement,
+        cleanEmptyTextNodes,
       }}
     >
       <div className={clsx(className)} {...props}>

@@ -54,6 +54,7 @@ export const App = () => {
 | theme | object/boolean | `undefined` | The theme to use. When `undefined`, it uses the standard theme. If this is set to `false`, it completely disables the theme. See below for more information |
 | classNames | object | `undefined` | The class names to use. See below for more information |
 | onClickElement | Function | `undefined` | `(element: XmlElement) => void`. A function to call when an element is clicked. The element is the  [`XmlElement`](https://rgrove.github.io/parse-xml/classes/XmlElement.html) that was clicked. |
+| cleanEmptyTextNodes | boolean | `false` | Try to clean up empty text nodes. |
 
 ### Theme
 

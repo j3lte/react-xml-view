@@ -95,4 +95,13 @@ export type XMLViewerProps = HTMLAttributes<HTMLDivElement> & {
    * @optional
    */
   onClickElement?: (element: XmlElement) => void;
+  /**
+   * Clean empty text nodes
+   *
+   * *Attempts to remove empty text nodes from the XML tree. It will also trim any text in text nodes*
+   *
+   * @default false
+   * @optional
+   */
+  cleanEmptyTextNodes?: boolean;
 };

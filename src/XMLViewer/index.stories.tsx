@@ -43,11 +43,13 @@ export const Example2 = createStory({
 export const Example3 = createStory({
   xml: xmlIBM,
   collapsible: true,
+  cleanEmptyTextNodes: true,
   parserOptions: defaultParserOptions,
 });
 
 export const Example4 = createStory({
   xml: xmlOrders,
   collapsible: true,
+  cleanEmptyTextNodes: true,
   parserOptions: defaultParserOptions,
 });

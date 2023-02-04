@@ -9,6 +9,7 @@ export type XMLViewerContextType = {
   classNames: ClassNames;
   indentSize: number;
   collapsible: boolean;
+  cleanEmptyTextNodes: boolean;
   onClickElement?: (element: XmlElement) => void;
 };
 
@@ -52,6 +53,7 @@ export const defaultXMLViewerContext: XMLViewerContextType = {
   classNames: defaultClassNames,
   indentSize: 2,
   collapsible: true,
+  cleanEmptyTextNodes: false,
 };
 
 export const XMLViewerContext = createContext<XMLViewerContextType>(null);

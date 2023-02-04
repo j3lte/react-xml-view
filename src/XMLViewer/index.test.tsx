@@ -244,3 +244,23 @@ describe("Click handler", () => {
     expect(normalClickHandler).not.toHaveBeenCalled();
   });
 });
+
+describe("Clean empty text nodes", () => {
+  it(`removes empty text nodes`, () => {
+    const { container } = render(
+      <XMLViewer
+        xml={`<TESTCASES><test>
+eee
+
+
+</test><test2>
+
+</test2></TESTCASES>`}
+        parserOptions={{ preserveCdata: true, preserveComments: true }}
+        cleanEmptyTextNodes
+      />
+    );
+
+    expect(container.querySelectorAll("span.xml-text").length).toBe(1);
+  });
+});
