@@ -12,6 +12,13 @@ module.exports = {
     builder: "webpack5",
   },
   webpackFinal: async (config) => {
+
+    // load xml as raw
+    config.module.rules.push({
+      test: /\.xml$/,
+      use: "raw-loader",
+    });
+
     return config;
   },
 };
