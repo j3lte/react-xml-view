@@ -20,6 +20,15 @@ const banner = `/**
 * @license ${packageJson.license}
 */`
 
+const onwarn = (warning) => {
+  // Skip circular dependency warnings
+  if (warning.code === "CIRCULAR_DEPENDENCY") {
+    return;
+  }
+  console.warn(`(!) ${warning.message}`)
+}
+
+
 export default {
   input: "src/index.ts",
   output: [
@@ -36,6 +45,7 @@ export default {
       banner,
     },
   ],
+  onwarn,
   plugins: [
     del({ targets: "build/*" }),
     // devDependenciesnd and peerDependencies wont be included in the bundle
