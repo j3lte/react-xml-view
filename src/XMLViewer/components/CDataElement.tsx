@@ -19,7 +19,7 @@ export const CDataElement = memo<(props: CDataElementProps) => JSX.Element>(
         {`${indentation}<![CDATA[${element.text}]]>`}
       </div>
     );
-  }
+  },
 );
 
 CDataElement.displayName = "CDataElement";

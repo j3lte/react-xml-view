@@ -7,7 +7,7 @@ const cDataXML = `<?xml version="1.0" encoding="UTF-8"?><note><!-- This is a com
 describe("Component Render & Error", () => {
   it(`shows xml`, () => {
     const { container } = render(
-      <XMLViewer xml="<notes></notes>" className="xml-viewer" />
+      <XMLViewer xml="<notes></notes>" className="xml-viewer" />,
     );
     const { firstChild: renderEl } = container;
 
@@ -37,7 +37,7 @@ describe("Component Render & Error", () => {
       <XMLViewer
         xml="invalid xml"
         invalidXMLRenderer={(error) => <pre>{error.message}</pre>}
-      />
+      />,
     );
     const { firstChild: renderEl } = container;
 
@@ -50,14 +50,14 @@ describe("Component Render & Error", () => {
 describe("Collapsible", () => {
   it(`don't collapse when clicking`, () => {
     const { container } = render(
-      <XMLViewer xml="<notes><note></note></notes>" />
+      <XMLViewer xml="<notes><note></note></notes>" />,
     );
     fireEvent(
       container.firstChild?.firstChild as HTMLElement,
       new MouseEvent("click", {
         bubbles: true,
         cancelable: true,
-      })
+      }),
     );
 
     expect(container.firstChild as HTMLElement).toHaveTextContent(/<note\/>/);
@@ -65,18 +65,18 @@ describe("Collapsible", () => {
 
   it(`collapse when collapsible is set to 'true'`, () => {
     const { container } = render(
-      <XMLViewer xml="<notes><note></note></notes>" collapsible />
+      <XMLViewer xml="<notes><note></note></notes>" collapsible />,
     );
     fireEvent(
       container.firstChild?.firstChild as HTMLElement,
       new MouseEvent("click", {
         bubbles: true,
         cancelable: true,
-      })
+      }),
     );
 
     expect(container.firstChild as HTMLElement).toHaveTextContent(
-      "<notes></notes"
+      "<notes></notes",
     );
   });
 });
@@ -91,14 +91,14 @@ describe("Collapsible selection", () => {
 
   it(`don't collapse when clicking`, () => {
     const { container } = render(
-      <XMLViewer xml="<notes><note></note></notes>" collapsible />
+      <XMLViewer xml="<notes><note></note></notes>" collapsible />,
     );
     fireEvent(
       container.firstChild?.firstChild as HTMLElement,
       new MouseEvent("click", {
         bubbles: true,
         cancelable: true,
-      })
+      }),
     );
 
     expect(container.firstChild as HTMLElement).toHaveTextContent(/<note\/>/);
@@ -114,7 +114,7 @@ describe("CData", () => {
 
   it(`shows CDATA with parserOptions`, () => {
     const { container } = render(
-      <XMLViewer xml={cDataXML} parserOptions={{ preserveCdata: true }} />
+      <XMLViewer xml={cDataXML} parserOptions={{ preserveCdata: true }} />,
     );
 
     expect(container).toHaveTextContent(/CDATA/);
@@ -130,7 +130,7 @@ describe("Comments", () => {
 
   it(`shows comments with parserOptions`, () => {
     const { container } = render(
-      <XMLViewer xml={cDataXML} parserOptions={{ preserveComments: true }} />
+      <XMLViewer xml={cDataXML} parserOptions={{ preserveComments: true }} />,
     );
 
     expect(container).toHaveTextContent(/This is a comment/);
@@ -140,7 +140,7 @@ describe("Comments", () => {
 describe("Attributes", () => {
   it(`show attributes`, () => {
     const { container } = render(
-      <XMLViewer xml="<notes><note id='1'></note></notes>" />
+      <XMLViewer xml="<notes><note id='1'></note></notes>" />,
     );
 
     expect(container).toHaveTextContent(/id="1"/);
@@ -156,7 +156,7 @@ describe("Attributes", () => {
 describe("Processing Instructions", () => {
   it(`shows processing instructions`, () => {
     const { container } = render(
-      <XMLViewer xml='<root><?xml-stylesheet type="text/xsl" href="style.xsl"?></root>' />
+      <XMLViewer xml='<root><?xml-stylesheet type="text/xsl" href="style.xsl"?></root>' />,
     );
     expect(container).toHaveTextContent(/xml-stylesheet/);
   });
@@ -169,7 +169,7 @@ describe("Theme", () => {
         xml={cDataXML}
         parserOptions={{ preserveCdata: true, preserveComments: true }}
         theme={false}
-      />
+      />,
     );
     expect(container.innerHTML).not.toMatch(/style="color:/);
     expect(container.innerHTML).not.toMatch(/overflow-wrap: break-word/);
@@ -189,7 +189,7 @@ describe("Theme", () => {
           textColor: false,
           overflowBreak: true,
         }}
-      />
+      />,
     );
     expect(container.innerHTML).toMatch(/overflow-wrap: break-word/);
   });
@@ -204,7 +204,7 @@ describe("Classnames", () => {
         classNames={{
           element: "custom-element",
         }}
-      />
+      />,
     );
     expect(container.firstChild?.firstChild).toHaveClass("custom-element");
   });
@@ -221,7 +221,7 @@ describe("Click handler", () => {
         parserOptions={{ preserveCdata: true, preserveComments: true }}
         onClickElement={clickHandler}
         onClick={normalClickHandler}
-      />
+      />,
     );
 
     fireEvent(
@@ -229,7 +229,7 @@ describe("Click handler", () => {
       new MouseEvent("click", {
         bubbles: true,
         cancelable: true,
-      })
+      }),
     );
 
     fireEvent(
@@ -237,7 +237,7 @@ describe("Click handler", () => {
       new MouseEvent("click", {
         bubbles: true,
         cancelable: true,
-      })
+      }),
     );
 
     expect(clickHandler).toHaveBeenCalled();
@@ -258,7 +258,7 @@ eee
 </test2></TESTCASES>`}
         parserOptions={{ preserveCdata: true, preserveComments: true }}
         cleanEmptyTextNodes
-      />
+      />,
     );
 
     expect(container.querySelectorAll("span.xml-text").length).toBe(1);

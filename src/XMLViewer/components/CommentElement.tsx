@@ -19,7 +19,7 @@ export const CommentElement = memo<(props: CommentElementProps) => JSX.Element>(
         {`${indentation}<!-- ${element.content} -->`}
       </div>
     );
-  }
+  },
 );
 
 CommentElement.displayName = "CommentElement";

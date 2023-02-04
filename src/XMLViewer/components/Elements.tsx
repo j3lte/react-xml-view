@@ -75,7 +75,7 @@ export const Elements = memo<(props: ElementsProps) => JSX.Element>(
         })}
       </>
     );
-  }
+  },
 );
 
 Elements.displayName = "Elements";

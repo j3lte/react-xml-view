@@ -35,7 +35,7 @@ export const Attributes = memo<(props: AttributesProps) => JSX.Element>(
             className={clsx(classNames.attributeValue)}
             style={attributeValueColor}
           >{`"${attrValue}"`}</span>
-        </span>
+        </span>,
       );
     }
 
@@ -44,7 +44,7 @@ export const Attributes = memo<(props: AttributesProps) => JSX.Element>(
         {attributeList}
       </span>
     );
-  }
+  },
 );
 
 Attributes.displayName = "Attributes";

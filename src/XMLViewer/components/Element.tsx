@@ -17,7 +17,7 @@ const getIndentationString = (size: number) => new Array(size + 1).join(" ");
 const isTextElement = (
   elements: Array<
     XmlElement | XmlText | XmlCdata | XmlComment | XmlProcessingInstruction
-  >
+  >,
 ) => {
   return elements.length === 1 && elements[0].type === XmlNode.TYPE_TEXT;
 };

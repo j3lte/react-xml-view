@@ -22,7 +22,7 @@ export const TextElement = memo<(props: TextElementProps) => JSX.Element>(
         {text}
       </span>
     );
-  }
+  },
 );
 
 TextElement.displayName = "TextElement";

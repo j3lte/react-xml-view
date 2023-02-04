@@ -54,7 +54,7 @@ const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
             ...defaultXMLViewerContext.theme,
             ...optsTheme,
           },
-    [optsTheme]
+    [optsTheme],
   );
 
   const classNames: ClassNames = useMemo(
@@ -62,7 +62,7 @@ const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
       ...defaultClassNames,
       ...optsClassNames,
     }),
-    [optsClassNames]
+    [optsClassNames],
   );
 
   if (error !== null) {
