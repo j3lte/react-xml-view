@@ -32,9 +32,12 @@ interface ElementProps {
 }
 
 const Element = memo(({ element, indentation, depth }: ElementProps) => {
-  const [collapsed, setCollapsed] = useState(false);
-  const { classNames, indentSize, collapsible, onClickElement } =
+  const { classNames, indentSize, collapsible, collapseDepth, onClickElement } =
     useXMLViewerContext();
+  const [collapsed, setCollapsed] = useState(
+    collapseDepth === -1 ? false : depth >= collapseDepth,
+  );
+
   const { separatorColor, tagColor } = useStyles();
 
   const hasChildren = element.children && element.children.length > 0;
