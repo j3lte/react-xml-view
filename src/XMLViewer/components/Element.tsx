@@ -36,25 +36,8 @@ const Element = memo(
         ? false
         : depth >= collapseDepth;
 
-    // const [collapsed, setCollapsed] = useState(
-    //   hasCollapsed !== undefined
-    //     ? hasCollapsed
-    //     : collapseDepth === -1
-    //     ? false
-    //     : depth >= collapseDepth,
-    // );
-
-    // useEffect(() => {
-    //   if (hasCollapsed !== undefined) {
-    //     setCollapsed(hasCollapsed);
-    //   } else {
-    //     setCollapsed(collapseDepth === -1 ? false : depth >= collapseDepth);
-    //   }
-    // }, [hasCollapsed]);
-
     const toggleCollapsed = (state: boolean) => {
       setMap(elementKey, state);
-      // setCollapsed(state);
     };
 
     const { separatorColor, tagColor } = useStyles();
