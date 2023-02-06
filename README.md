@@ -44,18 +44,18 @@ export const App = () => {
 
 ## Props
 
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| xml | string | | The XML to display. XML should have `UTF-8` character encoding, other encodings are not supported |
-| indent | number | `2` | The number of spaces to indent each level |
-| collapsible | boolean | `false` | Whether the tree can be collapsed or not |
-| collapsed | boolean/number | `false` | Whether the tree start as collapsed or not. If this is a number (`n > -1`), it will be the level to collapse to. Root starts at level `0` |
-| parserOptions | object | `undefined` | The options to pass to the parser. See [@rgrove/parse-xml API DOCS](https://rgrove.github.io/parse-xml/types/ParserOptions.html) |
-| invalidXMLRenderer | Function | `undefined` | `(error: Error) => JSX.Element`. A function to render the error when the XML is invalid. |
-| theme | object/boolean | `undefined` | The theme to use. When `undefined`, it uses the standard theme. If this is set to `false`, it completely disables the theme. See below for more information |
-| classNames | object | `undefined` | The class names to use. See below for more information |
-| onClickElement | Function | `undefined` | `(element: XmlElement) => void`. A function to call when an element is clicked. The element is the  [`XmlElement`](https://rgrove.github.io/parse-xml/classes/XmlElement.html) that was clicked. |
-| cleanEmptyTextNodes | boolean | `false` | Try to clean up empty text nodes. |
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| **xml** | string | | **Yes** | The XML to display. XML should have `UTF-8` character encoding, other encodings are not supported |
+| **classNames** | object | `undefined` | No |  The class names to use. See below for more information |
+| **cleanEmptyTextNodes** | boolean | `false` | No |  Try to clean up empty text nodes. |
+| **collapsed** | boolean/number | `false` | No |  Whether the tree start as collapsed or not. If this is a number (`n > -1`), it will be the level to collapse to. Root starts at level `0` |
+| **collapsible** | boolean | `false` | No |  Whether the tree can be collapsed or not |
+| **indent** | number | `2` | No |  The number of spaces to indent each level |
+| **invalidXMLRenderer** | Function | `undefined` | No |  `(error: Error) => JSX.Element`. A function to render the error when the XML is invalid. |
+| **onClickElement** | Function | `undefined` | No |  `(element: XmlElement) => void`. A function to call when an element is clicked. The element is the  [`XmlElement`](https://rgrove.github.io/parse-xml/classes/XmlElement.html) that was clicked. |
+| **parserOptions** | object | `undefined` | No |  The options to pass to the parser. See [@rgrove/parse-xml API DOCS](https://rgrove.github.io/parse-xml/types/ParserOptions.html) |
+| **theme** | object/boolean | `undefined` | No |  The theme to use. When `undefined`, it uses the standard theme. If this is set to `false`, it completely disables the theme. See below for more information |
 
 ### Theme
 
@@ -72,7 +72,7 @@ The theme object can contain the following properties:
 | textColor | `string` / `boolean` | `"#333"` | set the text color (`<tag>Text</tag>`) |
 | overflowBreak | `boolean` | `false` | adjust the xml to fit in the parent width without overflowing |
 
-> Note: for each color in the theme, you can set it to `false` to disable it.
+> Note: for each color in the theme, you can set it to `false` to disable it. It will omit the style attribute for that color.
 
 ### Class names
 
