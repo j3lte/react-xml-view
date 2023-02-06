@@ -89,6 +89,14 @@ export type XMLViewerProps = HTMLAttributes<HTMLDivElement> & {
   indentSize?: number;
 
   /**
+   * Whether to use tabs for indentation.
+   *
+   * @default false
+   * @optional
+   */
+  indentUseTabs?: boolean;
+
+  /**
    * The component to render when the XML is invalid.
    *
    * *The component will receive the error thrown by the XML parser.*

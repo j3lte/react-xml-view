@@ -224,6 +224,55 @@ describe("Classnames", () => {
   });
 });
 
+describe("Indent", () => {
+  it(`functions when indent is NaN`, () => {
+    const { container } = render(
+      <XMLViewer
+        xml={cDataXML}
+        parserOptions={{ preserveCdata: true, preserveComments: true }}
+        indentSize={NaN}
+      />,
+    );
+    expect(container.querySelectorAll(".xml-element").length).toBeGreaterThan(
+      1,
+    );
+  });
+
+  it(`functions when indent is number`, () => {
+    const { container } = render(
+      <XMLViewer
+        xml={cDataXML}
+        parserOptions={{ preserveCdata: true, preserveComments: true }}
+        indentSize={4}
+      />,
+    );
+    expect(container.querySelectorAll(".xml-element").length).toBeGreaterThan(
+      1,
+    );
+  });
+
+  it(`uses indent tabs`, () => {
+    const { container } = render(
+      <XMLViewer
+        xml={cDataXML}
+        parserOptions={{ preserveCdata: true, preserveComments: true }}
+        indentUseTabs
+      />,
+    );
+    expect(container.innerHTML).toMatch(/\t/);
+  });
+
+  it(`uses spaces`, () => {
+    const { container } = render(
+      <XMLViewer
+        xml={cDataXML}
+        parserOptions={{ preserveCdata: true, preserveComments: true }}
+      />,
+    );
+    expect(container.innerHTML).not.toMatch(/\t/);
+  });
+});
+
 describe("Click handler", () => {
   it(`calls click handler`, () => {
     const clickHandler = jest.fn();

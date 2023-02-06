@@ -9,6 +9,7 @@ export type XMLViewerContextType = {
   theme: Theme;
   classNames: ClassNames;
   indentSize: number;
+  indentUseTabs: boolean;
   collapsible: boolean;
   collapseDepth: number;
   cleanEmptyTextNodes: boolean;
@@ -54,6 +55,7 @@ export const defaultXMLViewerContext: XMLViewerContextType = {
   },
   classNames: defaultClassNames,
   indentSize: 2,
+  indentUseTabs: false,
   collapsible: true,
   collapseDepth: -1,
   cleanEmptyTextNodes: false,

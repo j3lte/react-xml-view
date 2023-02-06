@@ -37,8 +37,8 @@ export const getTheme = (optsTheme?: boolean | Partial<Theme>): Theme => {
   };
 };
 
-export const getIndentationString = (size: number) =>
-  new Array(size + 1).join(" ");
+export const getIndentationString = (size: number, useTabs: boolean) =>
+  new Array(size + 1).join(useTabs ? "\t" : " ");
 
 export const isTextElement = (
   elements: Array<

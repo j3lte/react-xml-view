@@ -15,7 +15,8 @@ import { getCollapseDepth, getTheme } from "./util";
 const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
   xml,
   parserOptions,
-  indentSize: optsIdentSize,
+  indentSize: optsIndentSize,
+  indentUseTabs: optsIndentUseTabs,
   theme: optsTheme,
   classNames: optsClassNames,
   collapsible: optsCollapsible,
@@ -38,7 +39,14 @@ const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
     }
   }, [xml, parserOptions]) as [Array<XmlElement>, Error | null];
 
-  const indentSize = optsIdentSize || 2;
+  const indentSize =
+    optsIndentSize === undefined
+      ? 2
+      : Number.isNaN(optsIndentSize)
+      ? 2
+      : optsIndentSize;
+  const indentUseTabs =
+    optsIndentUseTabs === undefined ? false : !!optsIndentUseTabs;
   const collapsible = optsCollapsible === undefined ? false : !!optsCollapsible;
   const collapseDepth = useMemo(
     () => (collapsible ? getCollapseDepth(optsCollapseDepth) : -1),
@@ -61,6 +69,7 @@ const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
       collapsible,
       collapseDepth,
       indentSize,
+      indentUseTabs,
       theme,
       classNames,
       onClickElement,
@@ -70,6 +79,7 @@ const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
       collapsible,
       collapseDepth,
       indentSize,
+      indentUseTabs,
       theme,
       classNames,
       onClickElement,

@@ -22,6 +22,7 @@ const Element = memo(
     const {
       classNames,
       indentSize,
+      indentUseTabs,
       collapsible,
       collapseDepth,
       onClickElement,
@@ -106,7 +107,9 @@ const Element = memo(
           >
             <Elements
               elements={element.children}
-              indentation={indentation + getIndentationString(indentSize)}
+              indentation={
+                indentation + getIndentationString(indentSize, indentUseTabs)
+              }
               depth={depth + 1}
               prefix={elementKey}
             />
