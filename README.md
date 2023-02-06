@@ -12,7 +12,7 @@
 
 A simple React component to display XML in a tree view.
 
-> Based on `react-xml-viewer`, see the original [here](https://github.com/alissonmbr/react-xml-viewer).
+![xml-viewer](https://user-images.githubusercontent.com/2557568/216987041-83b808f3-1b1b-4b1b-8e02-0499012b5453.png)
 
 ## Codesandbox Demo
 
@@ -92,6 +92,10 @@ The class names object can contain the following properties, feel free to overri
 | separator | `"xml-separator"` |
 | tag | `"xml-tag"` |
 | text | `"xml-text"` |
+
+## Acknowledgement
+
+This XML Viewer is based on `react-xml-viewer`, see the original [here](https://github.com/alissonmbr/react-xml-viewer).
 
 ## License
 
