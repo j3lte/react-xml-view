@@ -2,6 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/@j3lte/react-xml-view?label=NPM&logo=npm&style=flat-square)](https://www.npmjs.com/package/@j3lte/react-xml-view)
 [![License](https://img.shields.io/github/license/j3lte/react-xml-view?color=%2344cc10&label=License&logo=github&style=flat-square)](https://github.com/j3lte/react-xml-view/blob/main/LICENSE)
+[![GitHub Bugs](https://img.shields.io/github/issues-search/j3lte/react-xml-view?label=Bugs&logo=github&query=is%3Aopen%20label%3Abug&style=flat-square)](https://github.com/j3lte/react-xml-view/issues)
 [![GitHub issues](https://img.shields.io/github/issues/j3lte/react-xml-view?label=Issues&style=flat-square)](https://github.com/j3lte/react-xml-view/issues)
 [![GitHub last commit](https://img.shields.io/github/last-commit/j3lte/react-xml-view?label=Last%20Commit&logo=github&style=flat-square)](https://github.com/j3lte/react-xml-view/commits/main)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/j3lte/react-xml-view/ci.yml?label=Build%20status&logo=github&style=flat-square)](https://github.com/j3lte/react-xml-view/actions/workflows/ci.yml)
