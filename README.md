@@ -49,6 +49,7 @@ export const App = () => {
 | xml | string | | The XML to display. XML should have `UTF-8` character encoding, other encodings are not supported |
 | indent | number | `2` | The number of spaces to indent each level |
 | collapsible | boolean | `false` | Whether the tree can be collapsed or not |
+| collapsed | boolean/number | `false` | Whether the tree start as collapsed or not. If this is a number (`n > -1`), it will be the level to collapse to. Root starts at level `0` |
 | parserOptions | object | `undefined` | The options to pass to the parser. See [@rgrove/parse-xml API DOCS](https://rgrove.github.io/parse-xml/types/ParserOptions.html) |
 | invalidXMLRenderer | Function | `undefined` | `(error: Error) => JSX.Element`. A function to render the error when the XML is invalid. |
 | theme | object/boolean | `undefined` | The theme to use. When `undefined`, it uses the standard theme. If this is set to `false`, it completely disables the theme. See below for more information |
