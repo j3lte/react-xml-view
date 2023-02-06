@@ -97,7 +97,7 @@ const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
   return (
     <XMLViewerContext.Provider value={context}>
       <div className={clsx(className)} {...props}>
-        <Elements elements={elements} indentation="" />
+        <Elements elements={elements} indentation="" depth={0} />
       </div>
     </XMLViewerContext.Provider>
   );

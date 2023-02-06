@@ -22,10 +22,11 @@ interface ElementsProps {
     XmlElement | XmlText | XmlCdata | XmlComment | XmlProcessingInstruction
   >;
   indentation: string;
+  depth: number;
 }
 
 const Elements = memo<(props: ElementsProps) => JSX.Element>(
-  ({ elements, indentation }: ElementsProps) => {
+  ({ elements, indentation, depth }: ElementsProps) => {
     const { cleanEmptyTextNodes } = useXMLViewerContext();
     return (
       <>
@@ -47,6 +48,7 @@ const Elements = memo<(props: ElementsProps) => JSX.Element>(
                   key={key}
                   element={el as XmlElement}
                   indentation={indentation}
+                  depth={depth}
                 />
               );
             case XmlNode.TYPE_COMMENT:

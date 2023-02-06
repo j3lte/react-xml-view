@@ -28,9 +28,10 @@ const isTextElement = (
 interface ElementProps {
   element: XmlElement;
   indentation: string;
+  depth: number;
 }
 
-const Element = memo(({ element, indentation }: ElementProps) => {
+const Element = memo(({ element, indentation, depth }: ElementProps) => {
   const [collapsed, setCollapsed] = useState(false);
   const { classNames, indentSize, collapsible, onClickElement } =
     useXMLViewerContext();
@@ -41,7 +42,9 @@ const Element = memo(({ element, indentation }: ElementProps) => {
 
   return (
     <div
-      className={clsx(classNames.element)}
+      className={clsx(classNames.element, `depth-${depth}`, {
+        collapsed,
+      })}
       style={{ whiteSpace: "pre", cursor }}
       onClick={(event) => {
         event.stopPropagation();
@@ -83,6 +86,7 @@ const Element = memo(({ element, indentation }: ElementProps) => {
           <Elements
             elements={element.children}
             indentation={indentation + getIndentationString(indentSize)}
+            depth={depth + 1}
           />
         </span>
       )}
