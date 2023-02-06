@@ -46,14 +46,48 @@ export type XMLViewerProps = HTMLAttributes<HTMLDivElement> & {
    * @example `<root><child /></root>`
    */
   xml: string;
+
   /**
-   * The options to pass to the XML parser.
-   *
-   * *See the [parse-xml](https://rgrove.github.io/parse-xml/types/ParserOptions.html) documentation for more information.*
-   *
+   * The class names to use.
    * @optional
    */
-  parserOptions?: ParserOptions;
+  classNames?: ClassNames;
+
+  /**
+   * Clean empty text nodes
+   *
+   * *Attempts to remove empty text nodes from the XML tree. It will also trim any text in text nodes*
+   *
+   * @default false
+   * @optional
+   */
+  cleanEmptyTextNodes?: boolean;
+
+  /**
+   * Whether the tree should be collapsed at start.
+   *
+   * This can be set to `true` to collapse the tree at start or to a number to collapse the tree at start to a specific depth. Note that the root element is at depth 0.
+   *
+   * @default false
+   */
+  collapsed?: boolean | number;
+
+  /**
+   * Whether the tree can be collapsed.
+   *
+   * @default false
+   * @optional
+   */
+  collapsible?: boolean;
+
+  /**
+   * The number of spaces to use for indentation.
+   *
+   * @default 2
+   * @optional
+   */
+  indentSize?: number;
+
   /**
    * The component to render when the XML is invalid.
    *
@@ -65,52 +99,27 @@ export type XMLViewerProps = HTMLAttributes<HTMLDivElement> & {
    * ```
    */
   invalidXMLRenderer?: (error: Error) => JSX.Element;
-  /**
-   * The number of spaces to use for indentation.
-   *
-   * @default 2
-   * @optional
-   */
-  indentSize?: number;
-  /**
-   * Whether the tree can be collapsed.
-   *
-   * @default false
-   * @optional
-   */
-  collapsible?: boolean;
-  /**
-   * Whether the tree should be collapsed at start.
-   *
-   * This can be set to `true` to collapse the tree at start or to a number to collapse the tree at start to a specific depth. Note that the root element is at depth 0.
-   *
-   * @default false
-   */
-  collapsed?: boolean | number;
-  /**
-   * The theme to use. This can be a partial theme or set to `false` to completely disable the theme.
-   *
-   * @optional
-   */
-  theme?: Partial<Theme> | boolean;
-  /**
-   * The class names to use.
-   * @optional
-   */
-  classNames?: ClassNames;
+
   /**
    * On Click XML Element Handler
    *
    * @optional
    */
   onClickElement?: (element: XmlElement) => void;
+
   /**
-   * Clean empty text nodes
+   * The options to pass to the XML parser.
    *
-   * *Attempts to remove empty text nodes from the XML tree. It will also trim any text in text nodes*
+   * *See the [parse-xml](https://rgrove.github.io/parse-xml/types/ParserOptions.html) documentation for more information.*
    *
-   * @default false
    * @optional
    */
-  cleanEmptyTextNodes?: boolean;
+  parserOptions?: ParserOptions;
+
+  /**
+   * The theme to use. This can be a partial theme or set to `false` to completely disable the theme.
+   *
+   * @optional
+   */
+  theme?: Partial<Theme> | boolean;
 };
