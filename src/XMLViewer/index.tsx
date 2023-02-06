@@ -4,13 +4,9 @@ import { parseXml, XmlElement } from "@rgrove/parse-xml";
 import { clsx } from "clsx";
 
 import Elements from "./components/Elements";
-import {
-  defaultXMLViewerContext,
-  XMLViewerContext,
-  noTheme,
-  defaultClassNames,
-} from "./context";
+import { XMLViewerContext, defaultClassNames } from "./context";
 import type { XMLViewerProps, Theme, ClassNames } from "./index.types";
+import { getCollapseDepth, getTheme } from "./util";
 
 const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
   xml,
@@ -19,6 +15,7 @@ const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
   theme: optsTheme,
   classNames: optsClassNames,
   collapsible: optsCollapsible,
+  collapsed: optsCollapseDepth,
   cleanEmptyTextNodes: optsCleanEmptyTextNodes,
   onClickElement,
   invalidXMLRenderer,
@@ -39,23 +36,13 @@ const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
 
   const indentSize = optsIdentSize || 2;
   const collapsible = optsCollapsible === undefined ? false : !!optsCollapsible;
+  const collapseDepth = useMemo(
+    () => (collapsible ? getCollapseDepth(optsCollapseDepth) : -1),
+    [collapsible, optsCollapseDepth],
+  );
   const cleanEmptyTextNodes =
     optsCleanEmptyTextNodes === undefined ? false : !!optsCleanEmptyTextNodes;
-
-  const theme: Theme = useMemo(
-    () =>
-      typeof optsTheme === "undefined"
-        ? defaultXMLViewerContext.theme
-        : typeof optsTheme === "boolean"
-        ? optsTheme
-          ? defaultXMLViewerContext.theme
-          : noTheme
-        : {
-            ...defaultXMLViewerContext.theme,
-            ...optsTheme,
-          },
-    [optsTheme],
-  );
+  const theme: Theme = useMemo(() => getTheme(optsTheme), [optsTheme]);
 
   const classNames: ClassNames = useMemo(
     () => ({
@@ -68,6 +55,7 @@ const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
   const context = useMemo(
     () => ({
       collapsible,
+      collapseDepth,
       indentSize,
       theme,
       classNames,
@@ -76,6 +64,7 @@ const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
     }),
     [
       collapsible,
+      collapseDepth,
       indentSize,
       theme,
       classNames,

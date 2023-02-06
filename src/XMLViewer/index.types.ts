@@ -80,6 +80,14 @@ export type XMLViewerProps = HTMLAttributes<HTMLDivElement> & {
    */
   collapsible?: boolean;
   /**
+   * Whether the tree should be collapsed at start.
+   *
+   * This can be set to `true` to collapse the tree at start or to a number to collapse the tree at start to a specific depth. Note that the root element is at depth 0.
+   *
+   * @default false
+   */
+  collapsed?: boolean | number;
+  /**
    * The theme to use. This can be a partial theme or set to `false` to completely disable the theme.
    *
    * @optional

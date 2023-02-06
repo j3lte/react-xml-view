@@ -5,6 +5,7 @@ import { render, fireEvent } from "@testing-library/react";
 import XMLViewer from ".";
 
 const cDataXML = `<?xml version="1.0" encoding="UTF-8"?><note><!-- This is a comment --><description>An example of escaped CENDs</description><!-- This text contains a CEND ]]> --><!-- In this first case we put the ]] at the end of the first CDATA block and the > in the second CDATA block --><data><![CDATA[This text contains a CEND ]]]]><![CDATA[>]]></data><!-- In this second case we put a ] at the end of the first CDATA block and the ]> in the second CDATA block --><alternative><![CDATA[This text contains a CEND ]]]><![CDATA[]>]]></alternative></note>`;
+const colorsXML = `<?xml version="1.0"?><colors><color name="red"><r>255</r><g>0</g><b>0</b></color><color name="green"><r>0</r><g>255</g><b>0</b></color><color name="blue"><r>0</r><g>0</g><b>255</b></color></colors>`;
 
 describe("Component Render & Error", () => {
   it(`shows xml`, () => {
@@ -177,6 +178,17 @@ describe("Theme", () => {
     expect(container.innerHTML).not.toMatch(/overflow-wrap: break-word/);
   });
 
+  it(`switch on theme`, () => {
+    const { container } = render(
+      <XMLViewer
+        xml={cDataXML}
+        parserOptions={{ preserveCdata: true, preserveComments: true }}
+        theme
+      />,
+    );
+    expect(container.innerHTML).toMatch(/style="color:/);
+  });
+
   it(`overflow break`, () => {
     const { container } = render(
       <XMLViewer
@@ -264,5 +276,72 @@ eee
     );
 
     expect(container.querySelectorAll("span.xml-text").length).toBe(1);
+  });
+});
+
+describe("Start collapsed", () => {
+  it("doesn't collapse when collapsible = false", () => {
+    const { container } = render(<XMLViewer xml={colorsXML} collapsed />);
+
+    expect(container.querySelectorAll(".xml-element").length).toBeGreaterThan(
+      1,
+    );
+  });
+
+  it("doesn't collapse when collapsed = false", () => {
+    const { container } = render(
+      <XMLViewer xml={colorsXML} collapsible collapsed={false} />,
+    );
+
+    expect(container.querySelectorAll(".xml-element").length).toBeGreaterThan(
+      1,
+    );
+  });
+
+  it("doesn't collapse when collapsed is not a boolean or number", () => {
+    const { container } = render(
+      // @ts-ignore
+      <XMLViewer xml={colorsXML} collapsible collapsed="test" />,
+    );
+
+    expect(container.querySelectorAll(".xml-element").length).toBeGreaterThan(
+      1,
+    );
+  });
+
+  it("doesn't collapse when collapsed is < -1", () => {
+    const { container } = render(
+      // @ts-ignore
+      <XMLViewer xml={colorsXML} collapsible collapsed={-100} />,
+    );
+
+    expect(container.querySelectorAll(".xml-element").length).toBeGreaterThan(
+      1,
+    );
+  });
+
+  it("collapse all when collapsed = true", () => {
+    const { container } = render(
+      <XMLViewer xml={colorsXML} collapsible collapsed />,
+    );
+
+    expect(container.querySelectorAll(".xml-element").length).toBe(1);
+  });
+
+  it("collapse all when collapsed = 0", () => {
+    const { container } = render(
+      <XMLViewer xml={colorsXML} collapsible collapsed />,
+    );
+
+    expect(container.querySelectorAll(".xml-element").length).toBe(1);
+  });
+
+  it("collapse all when collapsed = 1", () => {
+    const { container } = render(
+      <XMLViewer xml={colorsXML} collapsible collapsed={1} />,
+    );
+
+    expect(container.querySelectorAll(".xml-element.depth-0").length).toBe(1);
+    expect(container.querySelectorAll(".xml-element.depth-1").length).toBe(3);
   });
 });

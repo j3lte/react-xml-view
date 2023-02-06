@@ -39,6 +39,7 @@ export const Example1 = createStory({
 export const Example2 = createStory({
   xml: `<?xml version="1.0"?><colors><color name="red"><r>255</r><g>0</g><b>0</b></color><color name="green"><r>0</r><g>255</g><b>0</b></color><color name="blue"><r>0</r><g>0</g><b>255</b></color></colors>`,
   collapsible: true,
+  collapsed: 1,
   parserOptions: defaultParserOptions,
   className: "xml-viewer",
 });
@@ -46,6 +47,7 @@ export const Example2 = createStory({
 export const Example3 = createStory({
   xml: xmlIBM,
   collapsible: true,
+  collapsed: 2,
   cleanEmptyTextNodes: true,
   parserOptions: defaultParserOptions,
 });
