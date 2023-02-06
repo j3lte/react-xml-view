@@ -3,7 +3,7 @@ import React, { memo } from "react";
 import type { XmlCdata } from "@rgrove/parse-xml";
 import clsx from "clsx";
 
-import { useStyles, useXMLViewerContext } from "../context/index";
+import { useStyles, useXMLViewerContext } from "../context/XMLViewerContext";
 
 interface CDataElementProps {
   element: XmlCdata;

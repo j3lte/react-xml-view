@@ -4,7 +4,11 @@ import { parseXml, XmlElement } from "@rgrove/parse-xml";
 import { clsx } from "clsx";
 
 import Elements from "./components/Elements";
-import { XMLViewerContext, defaultClassNames } from "./context";
+import { StateProvider } from "./context/StateContext";
+import {
+  XMLViewerContext,
+  defaultClassNames,
+} from "./context/XMLViewerContext";
 import type { XMLViewerProps, Theme, ClassNames } from "./index.types";
 import { getCollapseDepth, getTheme } from "./util";
 
@@ -85,9 +89,11 @@ const XMLViewer: (props: XMLViewerProps) => JSX.Element = ({
 
   return (
     <XMLViewerContext.Provider value={context}>
-      <div className={clsx(className)} {...props}>
-        <Elements elements={elements} indentation="" depth={0} />
-      </div>
+      <StateProvider context={context} elements={elements}>
+        <div className={clsx(className)} {...props}>
+          <Elements elements={elements} indentation="" prefix="" depth={0} />
+        </div>
+      </StateProvider>
     </XMLViewerContext.Provider>
   );
 };

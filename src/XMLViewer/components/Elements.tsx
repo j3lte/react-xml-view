@@ -9,7 +9,7 @@ import type {
 } from "@rgrove/parse-xml";
 import { XmlNode } from "@rgrove/parse-xml";
 
-import { useXMLViewerContext } from "../context";
+import { useXMLViewerContext } from "../context/XMLViewerContext";
 
 import CDataElement from "./CDataElement";
 import CommentElement from "./CommentElement";
@@ -23,15 +23,16 @@ interface ElementsProps {
   >;
   indentation: string;
   depth: number;
+  prefix: string;
 }
 
 const Elements = memo<(props: ElementsProps) => JSX.Element>(
-  ({ elements, indentation, depth }: ElementsProps) => {
+  ({ elements, indentation, depth, prefix }: ElementsProps) => {
     const { cleanEmptyTextNodes } = useXMLViewerContext();
     return (
       <>
         {elements.map((el, index) => {
-          const key = `el-${index}`;
+          const key = `${prefix}:d-${depth}-el-${index}`;
           switch (el.type) {
             case XmlNode.TYPE_TEXT: {
               if (cleanEmptyTextNodes) {
@@ -46,6 +47,7 @@ const Elements = memo<(props: ElementsProps) => JSX.Element>(
               return (
                 <Element
                   key={key}
+                  elementKey={key}
                   element={el as XmlElement}
                   indentation={indentation}
                   depth={depth}

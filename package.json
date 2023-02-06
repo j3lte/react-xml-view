@@ -64,6 +64,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@types/jest": "^29.2.0",
+    "@types/object-hash": "^3.0.2",
     "@types/react": "^18.0.24",
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.41.0",
@@ -102,7 +103,8 @@
   },
   "dependencies": {
     "@rgrove/parse-xml": "^4.0.1",
-    "clsx": "^1.2.1"
+    "clsx": "^1.2.1",
+    "object-hash": "^3.0.0"
   },
   "pre-commit": [
     "lint"

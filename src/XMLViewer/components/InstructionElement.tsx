@@ -3,7 +3,7 @@ import React, { memo } from "react";
 import type { XmlProcessingInstruction } from "@rgrove/parse-xml";
 import clsx from "clsx";
 
-import { useStyles, useXMLViewerContext } from "../context/index";
+import { useStyles, useXMLViewerContext } from "../context/XMLViewerContext";
 
 interface InstructionElementProps {
   element: XmlProcessingInstruction;

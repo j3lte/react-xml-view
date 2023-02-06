@@ -7,7 +7,7 @@ import {
   XmlNode,
 } from "@rgrove/parse-xml";
 
-import { defaultXMLViewerContext, noTheme } from "../context";
+import { defaultXMLViewerContext, noTheme } from "../context/XMLViewerContext";
 import { Theme } from "../index.types";
 
 export const getCollapseDepth = (depth: boolean | number): number => {

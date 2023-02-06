@@ -3,7 +3,7 @@ import React, { memo } from "react";
 import type { XmlText } from "@rgrove/parse-xml";
 import clsx from "clsx";
 
-import { useStyles, useXMLViewerContext } from "../context";
+import { useStyles, useXMLViewerContext } from "../context/XMLViewerContext";
 
 interface TextElementProps {
   element: XmlText;

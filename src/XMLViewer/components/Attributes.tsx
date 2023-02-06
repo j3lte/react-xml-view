@@ -2,7 +2,7 @@ import React, { memo } from "react";
 
 import clsx from "clsx";
 
-import { useStyles, useXMLViewerContext } from "../context/index";
+import { useStyles, useXMLViewerContext } from "../context/XMLViewerContext";
 
 interface AttributesProps {
   attributes: { [attrName: string]: string };
