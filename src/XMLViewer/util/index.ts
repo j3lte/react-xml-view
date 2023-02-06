@@ -1,3 +1,12 @@
+import {
+  XmlElement,
+  XmlCdata,
+  XmlComment,
+  XmlProcessingInstruction,
+  XmlText,
+  XmlNode,
+} from "@rgrove/parse-xml";
+
 import { defaultXMLViewerContext, noTheme } from "../context";
 import { Theme } from "../index.types";
 
@@ -26,4 +35,15 @@ export const getTheme = (optsTheme?: boolean | Partial<Theme>): Theme => {
     ...defaultXMLViewerContext.theme,
     ...optsTheme,
   };
+};
+
+export const getIndentationString = (size: number) =>
+  new Array(size + 1).join(" ");
+
+export const isTextElement = (
+  elements: Array<
+    XmlElement | XmlText | XmlCdata | XmlComment | XmlProcessingInstruction
+  >,
+) => {
+  return elements.length === 1 && elements[0].type === XmlNode.TYPE_TEXT;
 };

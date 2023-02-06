@@ -1,29 +1,13 @@
 import React, { memo, useState } from "react";
 
-import type {
-  XmlElement,
-  XmlCdata,
-  XmlComment,
-  XmlProcessingInstruction,
-  XmlText,
-} from "@rgrove/parse-xml";
-import { XmlNode } from "@rgrove/parse-xml";
+import type { XmlElement } from "@rgrove/parse-xml";
 import clsx from "clsx";
 
 import { useStyles, useXMLViewerContext } from "../context/index";
+import { getIndentationString, isTextElement } from "../util";
 
 import Attributes from "./Attributes";
 import Elements from "./Elements";
-
-const getIndentationString = (size: number) => new Array(size + 1).join(" ");
-
-const isTextElement = (
-  elements: Array<
-    XmlElement | XmlText | XmlCdata | XmlComment | XmlProcessingInstruction
-  >,
-) => {
-  return elements.length === 1 && elements[0].type === XmlNode.TYPE_TEXT;
-};
 
 interface ElementProps {
   element: XmlElement;
